@@ -1,13 +1,24 @@
-import React from 'react';
+import  React  from "react";
 import ReactDOM from 'react-dom';
-import {HashRouter} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import App from './App.js';
+// importing component for routing to different pages
+import Whoops404 from './error-page';
 
-// ReactDOM.render( <App/> , document.getElementById('root'));
+//testing imports 
+// change all the test component and pages to final componenet
+import LoginTest from './login/login-test';
+import PostTest from "./post/post-test";
+import  UserListTest  from "./user/user-list-test";
 
+//render routing pages to root
 ReactDOM.render(
-        <HashRouter>
-            <App />
-        </HashRouter>
-    , document.getElementById('root'));
+    <BrowserRouter>
+        <Switch>
+            <Route exact path='/' component={LoginTest}/>
+            <Route path='/post' component={PostTest}/>
+            <Route path='/user-board' component={UserListTest}/>
+            <Route component={Whoops404}/>
+        </Switch>
+    </BrowserRouter>,
+document.getElementById('root'));
