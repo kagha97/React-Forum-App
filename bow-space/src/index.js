@@ -4,10 +4,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 // importing component for routing to different pages
 import Whoops404 from './error-page';
+import Login from './login/login';
 
 //testing imports 
 // change all the test component and pages to final componenet
-import LoginTest from './login/login-test';
 import PostTest from "./post/post-test";
 import  UserListTest  from "./user/user-list-test";
 
@@ -15,7 +15,7 @@ import  UserListTest  from "./user/user-list-test";
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
-            <Route exact path='/' component={LoginTest}/>
+            <Route exact path='/' component={Login}/>
             <Route path='/post' component={PostTest}/>
             <Route path='/user-board' component={UserListTest}/>
             <Route component={Whoops404}/>
