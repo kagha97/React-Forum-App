@@ -1,0 +1,16 @@
+/* Login page */
+#login-header {
+    margin-top: 2%;
+}
+
+#login-form {
+    margin-top: 10%;
+}
+
+#email-input {
+    margin: 1em;
+}
+
+#pwd-input {
+    margin: 1em;
+}
