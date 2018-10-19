@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
         
 
 function LoginHeader() {
@@ -16,7 +17,11 @@ class LoginForm extends React.Component {
     handleSubmit = () => {
         console.log("----------[handleSubmit]-------");
         console.log(this.props);
-        let newCredentials = authenticateUser();
+        console.log("------------[refs]-------------");
+        let email = this.refs.email.value;
+        let pwd = this.refs.pwd.value;
+        let userInputs = {email, pwd}
+        let newCredentials = authenticateUser(userInputs);
         this.props.OnSubmitLogin(newCredentials);
     }
 
@@ -26,13 +31,13 @@ class LoginForm extends React.Component {
                 <div className = 'row justify-content-md-center'>
                     <div className = 'form-inline'>
                         <label for="email" className='mr-sm-2'>Username: </label>
-                        <input type="email" className="form-control mr-sm-2" id="email-input"/>
+                        <input type="email" className="form-control mr-sm-2" id="email-input" ref='email'/>
                     </div>
                 </div>
                 <div className = 'row justify-content-md-center'>
                     <div className = 'form-inline'>
                         < label className = 'mr-sm-2' > Password: </label>
-                        <input type="password" className="form-control mr-sm-2" id="pwd-input"/>
+                        <input type="password" className="form-control mr-sm-2" id="pwd-input" ref='pwd'/>
                     </div>
                 </div>
                 < div className = 'row justify-content-md-center mr-sm-2' >
@@ -43,9 +48,15 @@ class LoginForm extends React.Component {
     }
 }
 
-function authenticateUser() {
-    //replace with api call
-    let loginCredentials = { status: 'success', userId : 'b.patel405', loginToken : 'bvc'}
+function authenticateUser(userInputs) {
+    console.log("-----------[authenticate user]----------");
+    let loginCredentials = { status: '', userId : '', loginToken : ''}
+    if (userInputs.email !== '' && userInputs.pwd !== '') {
+        //replace with api call
+        console.log(userInputs.email);
+        console.log(userInputs.pwd);
+        loginCredentials = { status: 'success', userId : 'b.patel405', loginToken : 'bvc'}
+    }
     return loginCredentials;
 }
 
@@ -58,12 +69,21 @@ class Login extends React.Component {
         console.log(this.props.loginCredentials);
     }
 
+    RedirectToUserBoard() {
+        console.log("--------[redirect to user board function]------");
+        return ( 
+            <Redirect to="/user" />
+        );
+    }
+
     render() {
         console.log("------------[login component]---------------");
         console.log(this.props);
         const loginCredentials = this.props.loginCredentials;
+        const loginStatus = loginCredentials.status;
         return (
             <div className = 'container-fluid'>
+                {loginStatus === "success" ? this.RedirectToUserBoard() : ''}
                 <LoginHeader/>
                 <LoginForm loginCredentials={loginCredentials} OnSubmitLogin={this.props.OnSubmitLogin}/>
             </div>
