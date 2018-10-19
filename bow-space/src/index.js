@@ -19,21 +19,33 @@ class App extends React.Component {
         super(props);
         this.state = {
             loginCredentials : {
-                loginStatus : '',
+                status : '',
                 userId : '',
                 loginToken : ''
             }
         }
     }
 
+    handleLogin = (newCredentials) => {
+        console.log("--------[handleLogin]-----");
+        this.setState({
+            loginCredentials: newCredentials
+        });
+        console.log(this.state);
+    }
+
     //rendering app component
     render() {
         const loginCredentials = this.state.loginCredentials;
+        const loginStatus = loginCredentials.status;
+        let userId = '';
+        console.log("---------[render app]--------");
+        console.log(loginCredentials);
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route exact path='/' component={(...props) => <Login {...props} loginCredentials={loginCredentials}/>}/>
-                    <Route path='/post' component={PostTest}/>
+                    <Route exact path='/' component={(...props) => <Login {...props} loginCredentials={loginCredentials} OnSubmitLogin={this.handleLogin}/>}/>
+                    <Route path='/user' component={(props) => <PostTest  {...props} loginCredentials={loginCredentials}/>}/>
                     <Route path='/user-board' component={UserListTest}/>
                     <Route component={Whoops404}/>
                 </Switch>
@@ -41,7 +53,6 @@ class App extends React.Component {
         );
     }
 }
-
 
 //reder App
 ReactDOM.render(<App/>, document.getElementById('root'));
