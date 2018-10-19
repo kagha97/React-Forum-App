@@ -27,7 +27,7 @@ function LoginForm() {
                 </div>
             </div>
             < div className = 'row justify-content-md-center mr-sm-2' >
-                <button type="submit" className="btn btn-primary mr-sm-2">Submit</button>
+                <button type="submit" className="btn btn-dark mr-sm-2" id='login-btn'>Login</button>
             </div>
         </div>
     );
@@ -35,6 +35,8 @@ function LoginForm() {
 
 class Login extends React.Component {
     render() {
+        console.log("[login component]");
+        console.log(this.props.loginCredentials);
         return (
             <div className = 'container-fluid'>
                 <LoginHeader/>

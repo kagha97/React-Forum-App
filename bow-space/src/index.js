@@ -12,14 +12,36 @@ import Login from './login/login';
 import PostTest from "./post/post-test";
 import  UserListTest  from "./user/user-list-test";
 
-//render routing pages
-ReactDOM.render(
-    <BrowserRouter>
-        <Switch>
-            <Route exact path='/' component={Login}/>
-            <Route path='/post' component={PostTest}/>
-            <Route path='/user-board' component={UserListTest}/>
-            <Route component={Whoops404}/>
-        </Switch>
-    </BrowserRouter>,
-document.getElementById('root'));
+
+class App extends React.Component {
+    //app constructor
+    constructor(props) {
+        super(props);
+        this.state = {
+            loginCredentials : {
+                loginStatus : '',
+                userId : '',
+                loginToken : ''
+            }
+        }
+    }
+
+    //rendering app component
+    render() {
+        const loginCredentials = this.state.loginCredentials;
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path='/' component={(...props) => <Login {...props} loginCredentials={loginCredentials}/>}/>
+                    <Route path='/post' component={PostTest}/>
+                    <Route path='/user-board' component={UserListTest}/>
+                    <Route component={Whoops404}/>
+                </Switch>
+            </BrowserRouter>
+        );
+    }
+}
+
+
+//reder App
+ReactDOM.render(<App/>, document.getElementById('root'));
