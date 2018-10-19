@@ -19,4 +19,8 @@
     margin: 1em;
 }
 
+#invalid-login {
+    color: red;
+}
+
 /*post*/

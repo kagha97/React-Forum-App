@@ -22,28 +22,46 @@ class App extends React.Component {
                 status : '',
                 userId : '',
                 loginToken : ''
+            },
+            loginAttempt : {
+                message : '',
+                loginStatus : false,
             }
         }
     }
 
     handleLogin = (newCredentials) => {
-        console.log("--------[handleLogin]-----");
-        this.setState({
-            loginCredentials: newCredentials
-        });
-        console.log(this.state);
+        if (newCredentials.status === "success") {
+            this.setState(
+                {
+                    loginCredentials : newCredentials,
+                    loginAttempt : {
+                        message : "",
+                        loginStatus : true
+                    }
+                }
+            );
+        }
+        else {
+            this.setState(
+                {
+                    loginAttempt : {
+                        message : "Try Again!",
+                        loginStatus : false
+                    }
+                }
+            );
+        }
     }
 
     //rendering app component
     render() {
+        const loginAttempt = this.state.loginAttempt;
         const loginCredentials = this.state.loginCredentials;
-        const loginStatus = loginCredentials.status;
-        console.log("---------[render app]--------");
-        console.log(loginCredentials);
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route exact path='/' component={(...props) => <Login {...props} loginCredentials={loginCredentials} OnSubmitLogin={this.handleLogin}/>}/>
+                    <Route exact path='/' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
                     <Route path='/user' component={(...props) => <PostTest  {...props} loginCredentials={loginCredentials}/>}/>
                     <Route path='/user-board' component={UserListTest}/>
                     <Route component={Whoops404}/>
