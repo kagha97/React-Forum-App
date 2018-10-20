@@ -1,6 +1,6 @@
 import  React  from "react";
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 // importing component for routing to different pages
 import "./style.css";
@@ -57,13 +57,15 @@ class App extends React.Component {
     //rendering app component
     render() {
         const loginAttempt = this.state.loginAttempt;
+        const loginStatus = loginAttempt.loginStatus;
         const loginCredentials = this.state.loginCredentials;
+        console.log(loginStatus);
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route exact path='/' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
-                    <Route path='/user' component={(...props) => <PostTest  {...props} loginCredentials={loginCredentials}/>}/>
-                    <Route path='/user-board' component={UserListTest}/>
+                    <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
+                    {loginStatus === false ? <Redirect to="/login" /> : ''}
+                    <Route exact path='/' component={(...props) => <PostTest  {...props} loginCredentials={loginCredentials}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>

@@ -63,18 +63,12 @@ function authenticateUser(userInputs) {
 
 class Login extends React.Component {
 
-    RedirectToUserBoard() {
-        return ( 
-            <Redirect to="/user" />
-        );
-    }
-
     render() {
         const loginAttempt = this.props.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;
         return (
             <div className = 'container-fluid'>
-                {loginStatus === true ? this.RedirectToUserBoard() : ''}
+                {loginStatus === true ? <Redirect to="/" /> : ''}
                 <LoginHeader/>
                 <LoginForm loginAttempt={loginAttempt} OnSubmitLogin={this.props.OnSubmitLogin}/>
             </div>
