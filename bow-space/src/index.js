@@ -11,6 +11,7 @@ import Login from './login/login';
 // change all the test component and pages to final componenet
 import PostTest from "./post/post-test";
 import  UserListTest  from "./user/user-list-test";
+import UserListPanel from "./user/user-list";
 
 
 class App extends React.Component {
@@ -22,30 +23,47 @@ class App extends React.Component {
                 status : '',
                 userId : '',
                 loginToken : ''
+            },
+            loginAttempt : {
+                message : '',
+                loginStatus : false,
             }
         }
     }
 
     handleLogin = (newCredentials) => {
-        console.log("--------[handleLogin]-----");
-        this.setState({
-            loginCredentials: newCredentials
-        });
-        console.log(this.state);
+        if (newCredentials.status === "success") {
+            this.setState(
+                {
+                    loginCredentials : newCredentials,
+                    loginAttempt : {
+                        message : "",
+                        loginStatus : true
+                    }
+                }
+            );
+        }
+        else {
+            this.setState(
+                {
+                    loginAttempt : {
+                        message : "Try Again!",
+                        loginStatus : false
+                    }
+                }
+            );
+        }
     }
 
     //rendering app component
     render() {
+        const loginAttempt = this.state.loginAttempt;
         const loginCredentials = this.state.loginCredentials;
-        const loginStatus = loginCredentials.status;
-        let userId = '';
-        console.log("---------[render app]--------");
-        console.log(loginCredentials);
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route exact path='/' component={(...props) => <Login {...props} loginCredentials={loginCredentials} OnSubmitLogin={this.handleLogin}/>}/>
-                    <Route path='/user' component={(props) => <PostTest  {...props} loginCredentials={loginCredentials}/>}/>
+                    <Route exact path='/' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
+                    <Route path='/user' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials}/>}/>
                     <Route path='/user-board' component={UserListTest}/>
                     <Route component={Whoops404}/>
                 </Switch>
