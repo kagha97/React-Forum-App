@@ -4,19 +4,76 @@
 }
 
 #login-form {
-    margin-top: 10%;
+    margin-top: 6%;
+
 }
 
+#logo {
+    margin-left: 2.8em;
+}
+
+
 #email-input {
-    margin: 1em;
+   background-color: rgb(40, 40, 40);
+   border-width: 2px;
+   border-color: rgb(10, 89, 121);
+   color: white;
 }
 
 #pwd-input {
-    margin: 1em;
+    background-color: rgb(40, 40, 40);
+   border-width: 2px;
+   border-color: rgb(10, 89, 121);
+   color: white;
 }
 
 #login-btn {
-    margin: 1em;
+    margin-left: 2em;
+    width: 20em;
+    height: 3em;
+}
+
+#invalid-login {
+    color: red;
+}
+
+#login-background {
+      /* The image used */
+      background-image: url(../src/images/bvc.png);
+
+      /* Full height */
+      height: 100vh; 
+  
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+}
+
+#login-userpass {
+    color: white;
+}
+
+
+#login-head {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: 2em;
+    margin-bottom: 1em;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+#login-msg {
+    color:#696969;
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: 1em;
+    margin-bottom: 2.2em;
+    margin-top: -1em;
 }
 
 /*post*/
@@ -24,9 +81,46 @@
 /*USER LIST*/
 
 /*user info panel*/
-.border {
+#profile {
+    margin-top: 1em;
     border-radius: 80%;
-    width: 11em;
-    height: 10em;
+    width: 10em;
+    height: 9em;
 } 
+
+
+#user-list {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: 2em;
+    color: white;
+    margin-top: 2em;
+}
+
+
+#firstlastname {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: 1.5em;
+    color: white;
+}
+
+#username {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: 1em;
+    color: white;
+}
+
+
+#logout {
+    margin-top: 2em;
+    margin-left: 3.7em;
+    /*border: 3px solid #73AD21;*/
+}
+
+
 
