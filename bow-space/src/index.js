@@ -59,7 +59,6 @@ class App extends React.Component {
         const loginAttempt = this.state.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;
         const loginCredentials = this.state.loginCredentials;
-        console.log(loginStatus);
         return (
             <BrowserRouter>
                 <Switch>
