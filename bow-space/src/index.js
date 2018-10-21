@@ -11,6 +11,7 @@ import Login from './login/login';
 // change all the test component and pages to final componenet
 import PostTest from "./post/post-test";
 import  UserListTest  from "./user/user-list-test";
+import UserListPanel from "./user/user-list";
 
 
 class App extends React.Component {
@@ -64,7 +65,8 @@ class App extends React.Component {
                 <Switch>
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    <Route exact path='/' component={(...props) => <PostTest  {...props} loginCredentials={loginCredentials}/>}/>
+                    <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials}/>}/>
+                    <Route path='/user-board' component={UserListTest}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>
