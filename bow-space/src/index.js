@@ -9,8 +9,6 @@ import Login from './login/login';
 
 //testing imports 
 // change all the test component and pages to final componenet
-import PostTest from "./post/post-test";
-import  UserListTest  from "./user/user-list-test";
 import UserListPanel from "./user/user-list";
 
 
@@ -32,12 +30,13 @@ class App extends React.Component {
     }
 
     handleLogin = (newCredentials) => {
+        // change state of app if login attempt was successful or not
         if (newCredentials.status === "success") {
             this.setState(
                 {
                     loginCredentials : newCredentials,
                     loginAttempt : {
-                        message : "",
+                        message : '',
                         loginStatus : true
                     }
                 }
@@ -47,7 +46,7 @@ class App extends React.Component {
             this.setState(
                 {
                     loginAttempt : {
-                        message : "Try Again!",
+                        message : "Invalid credentials used. Try Again Please!",
                         loginStatus : false
                     }
                 }
@@ -66,7 +65,6 @@ class App extends React.Component {
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
                     <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials}/>}/>
-                    <Route path='/user-board' component={UserListTest}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>

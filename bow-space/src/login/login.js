@@ -1,17 +1,5 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-        
-
-function LoginHeader() {
-    return (
-
-        <div className = 'row justify-content-md-center'>
-            <div className='row' id='login-header'>
-              
-            </div>
-        </div>
-    );
-}
 
 class LoginForm extends React.Component {
 
@@ -26,9 +14,9 @@ class LoginForm extends React.Component {
     render () {
         const message = this.props.loginAttempt.message;
         return (
-            <div className= 'row justify-content-md-center' id='login-form'> 
-                <div class="card  bg-dark mb-3" id='login-form' style={{width:'21em'}}>
-                    <div className = 'card-header'>  <img id = "logo" src={ require('../images/bowspace logo.png') }/></div> 
+            <div className= 'row justify-content-md-center'> 
+                <div className="card  bg-dark mb-3" id='login-form' style={{width:'21em'}}>
+                    <div className = 'card-header'>  <img id = "logo" src={ require('../images/bowspace logo.png')} alt='bowspace'/></div> 
                         <div class="card-body">
                             <label id = "login-head">WELCOME!</label>
                             <label id = "login-msg">Nice to see you again, please login.</label>
@@ -45,7 +33,7 @@ class LoginForm extends React.Component {
                             </div>
                         </div>
                         <div className = 'row justify-content-md-center'>
-                            <label className = 'mr-sm-2' id='invalid-login'>{message}</label>
+                            <label className = 'mr-sm-2' id='login-status-message'>{message}</label>
                         </div>
                         <div className = 'row justify-content-md-center mr-sm-2' >
                             <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={this.handleSubmit}>Login</button>
@@ -75,10 +63,9 @@ class Login extends React.Component {
         const loginAttempt = this.props.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;
         return (
-            <div className = 'container-fluid'>
-                {loginStatus === true ? <Redirect to="/" /> : ''}
-                <LoginHeader/>
-                <LoginForm loginAttempt={loginAttempt} OnSubmitLogin={this.props.OnSubmitLogin}/>
+            <div id = 'login-background'>
+                    {loginStatus === true ? <Redirect to='/' /> : ''}
+                    <LoginForm loginAttempt={loginAttempt} OnSubmitLogin={this.props.OnSubmitLogin}/>
             </div>
         );
     }
