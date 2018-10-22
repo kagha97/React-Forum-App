@@ -1,28 +1,24 @@
 import React, {Component} from 'react';
-        
+import { Redirect } from 'react-router-dom'
 
 
-function UserInfo() {
-    var name = "First Last";
-    var fAl = name.charAt(0); 
-   // alert(fAl);
-    return (
+class UserInfo extends React.Component {
 
-        <div className="card row align-items-center" style={{width: '23rem', background:'#0077b3'}}>
-        <img id = "profile" className="card-img-top" src= { require('../images/avatar.png')} alt="User Profile Picture"/>
-        <div className="card-body ">
-         <label id = "firstlastname">Karamullah Agha</label>
-         <label id = "username">k.agha809</label>
-          <a href="#" id= "logout" class="btn btn-danger">Logout</a>
-          
-        </div>
-      </div>
-    );
+    render() {
+        return (
+            <div className="card row align-items-center" style={{width: '23rem', background:'#0077b3'}}>
+                <img id = "profile" className="card-img-top" src= { require('../images/avatar.png')} alt="User Profile"/>
+                <div className="card-body ">
+                    <label id = "firstlastname">Karamullah Agha</label>
+                    <label id = "username">k.agha809</label>
+                    <button href="#" id= "logout" class="btn btn-danger" onClick=''>Logout</button>
+                </div>
+            </div>
+        );
+    }
 }
 
 class UserList extends React.Component {
-   
-   
     render () {
         //can use same method to get user list from api
         var g = ['name1', 'name2', 'name3', 'name4', 'name4', 'name1', 'name2', 'name3', 'name4', 'name4'];
@@ -63,16 +59,11 @@ class UserListPanel extends React.Component {
                 <button type="button" class="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}>My Board</button>
                 <UserList/>
 
-               <img className = "mt-auto" src={ require('../images/bowspace logo.png') } />
+               <img className = "mt-auto" src={ require('../images/bowspace logo.png') }  alt='bowspace'/>
                 </div>
             
         );
     }
 }
-
-
-
-
-
 
 export default UserListPanel;
