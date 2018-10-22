@@ -1,7 +1,4 @@
 /* Login page */
-#login-header {
-    margin-top: 2%;
-}
 
 #login-form {
     margin-top: 6%;
@@ -28,12 +25,13 @@
 }
 
 #login-btn {
+    margin-top : 0.5em;
     margin-left: 2em;
     width: 20em;
     height: 3em;
 }
 
-#invalid-login {
+#login-status-message {
     color: red;
 }
 
