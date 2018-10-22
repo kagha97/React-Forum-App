@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
                 <div className="card  bg-dark mb-3" id='login-form' style={{width:'21em'}}>
                     <div className = 'card-header'>  <img id = "logo" src={ require('../images/bowspace logo.png')} alt='bowspace'/></div> 
                         <div className="card-body">
-                            < label htmlFor = 'login head' id = "login-head" > WELCOME! </label>
+                            <label htmlFor = 'login head' id = "login-head" > WELCOME! </label>
                             <label  htmlFor = 'login message' id = "login-msg">Nice to see you again, please login.</label>
                             <div className = 'row justify-content-md-center'>
                                 <div className = 'form-group'>
@@ -45,13 +45,26 @@ class LoginForm extends React.Component {
     }
 }
 
+function postRequest(url, emailAddress, password) {
+    return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                EmailAddress: emailAddress,
+                Password: password,
+            }).then(response => response.json())
+        })
+}
+
 function authenticateUser(userInputs) {
     let loginCredentials = { status: '', userId : '', loginToken : ''}
     if (userInputs.email !== '' && userInputs.pwd !== '') {
         //replace with api call
-        console.log(userInputs.email);
-        console.log(userInputs.pwd);
-        loginCredentials = { status: 'success', userId : 'b.patel405', loginToken : 'bvc'}
+        console.log("-----------[fetch]---------");
+        console.log("---------[fetch complete]-----------");
     }
     return loginCredentials;
 }
