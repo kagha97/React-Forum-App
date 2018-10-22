@@ -12,6 +12,7 @@ import Login from './login/login';
 import PostTest from "./post/post-test";
 import  UserListTest  from "./user/user-list-test";
 import UserListPanel from "./user/user-list";
+import ViewPost from "./post/view-post";
 
 
 class App extends React.Component {
@@ -64,7 +65,7 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path='/' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
                     <Route path='/user' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials}/>}/>
-                    <Route path='/user-board' component={UserListTest}/>
+                    <Route path='/post' component={(...props) => <ViewPost/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>
