@@ -54,6 +54,24 @@ class App extends React.Component {
         }
     }
 
+    // logout user
+    handleLogout = () => {
+        console.log("-------------[handleLogout]----------");
+        this.setState(
+            {
+                loginCredentials : {
+                    status : '',
+                    userId : '',
+                    loginToken : ''
+                },
+                loginAttempt : {
+                    message : '',
+                    loginStatus : false,
+                }
+            }
+        );
+    }
+
     //rendering app component
     render() {
         const loginAttempt = this.state.loginAttempt;
@@ -64,7 +82,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials}/>}/>
+                    <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>

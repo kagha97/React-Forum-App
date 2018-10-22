@@ -11,7 +11,7 @@ class UserInfo extends React.Component {
                 <div className="card-body ">
                     <label id = "firstlastname">Karamullah Agha</label>
                     <label id = "username">k.agha809</label>
-                    <button href="#" id= "logout" class="btn btn-danger" onClick=''>Logout</button>
+                    <button href="#" id= "logout" class="btn btn-danger" onClick={this.props.OnLogout}>Logout</button>
                 </div>
             </div>
         );
@@ -44,18 +44,10 @@ class UserList extends React.Component {
 
 class UserListPanel extends React.Component {
 
-    //---------CDM --------
-    componentDidMount() {
-        console.log("-------------[CDM]---------------");
-       console.log(this.props.loginCredentials);
-    }
-
     render() {
-        console.log("------------[login component]---------------");
-        
         return (
             <div className="card  row align-items-center" style={{height: '100vh',width: '23rem', background: '#333333'}}>
-                <UserInfo/>
+                <UserInfo OnLogout={this.props.OnLogout}/>
                 <button type="button" class="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}>My Board</button>
                 <UserList/>
 
