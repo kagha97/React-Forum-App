@@ -38,13 +38,13 @@ class LoginForm extends React.Component {
   <label id = "login-msg">Nice to see you again, please login.</label>
             <div className = 'row justify-content-md-center'>
                 <div className = 'form-group'>
-                    <label id = 'login-userpass' for="email" className='mr-sm-2'>Username: </label>
+                    <label id = 'login-userpass' for="email" className='mr-sm-2'>USERNAME </label>
                     <input type="email" className="form-control mr-sm-2"  id="email-input" ref='email'/>
                 </div>
             </div>
             <div className = 'row justify-content-md-center'>
                 <div className = 'form-group'>
-                    <label id = 'login-userpass' className = 'mr-sm-2'> Password: </label>
+                    <label id = 'login-userpass' className = 'mr-sm-2'> PASSWORD </label>
                     <input type="password" className="form-control mr-sm-2"  id="pwd-input" ref='pwd'/>
                 </div>
             </div>

@@ -84,18 +84,27 @@
 #profile {
     margin-top: 1em;
     border-radius: 80%;
-    width: 10em;
-    height: 9em;
+    width: 4em;
+    height: 4em;
 } 
 
+#main-panel {
+  
+    overflow: hidden;
+}
 
-#user-list {
+#user-list-label {
     display: block;
     text-align: center;
     line-height: 150%;
     font-size: 2em;
     color: white;
     margin-top: 2em;
+}
+
+#user-list {
+    overflow:auto;
+    
 }
 
 
@@ -121,6 +130,7 @@
     margin-left: 3.7em;
     /*border: 3px solid #73AD21;*/
 }
+
 
 
 
