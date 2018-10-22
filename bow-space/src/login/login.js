@@ -65,6 +65,7 @@ function authenticateUser(userInputs) {
         //replace with api call
         console.log("-----------[fetch]---------");
         console.log("---------[fetch complete]-----------");
+        loginCredentials = { status: 'success', userId : 'b.patel405', loginToken : 'bvc'}
     }
     return loginCredentials;
 }
