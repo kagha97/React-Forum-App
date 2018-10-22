@@ -50,10 +50,8 @@ class UserListPanel extends React.Component {
                 <UserInfo OnLogout={this.props.OnLogout}/>
                 <button type="button" class="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}>My Board</button>
                 <UserList/>
-
                <img className = "mt-auto" src={ require('../images/bowspace logo.png') }  alt='bowspace'/>
                 </div>
-            
         );
     }
 }

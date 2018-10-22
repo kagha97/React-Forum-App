@@ -17,23 +17,23 @@ class LoginForm extends React.Component {
             <div className= 'row justify-content-md-center'> 
                 <div className="card  bg-dark mb-3" id='login-form' style={{width:'21em'}}>
                     <div className = 'card-header'>  <img id = "logo" src={ require('../images/bowspace logo.png')} alt='bowspace'/></div> 
-                        <div class="card-body">
-                            <label id = "login-head">WELCOME!</label>
-                            <label id = "login-msg">Nice to see you again, please login.</label>
+                        <div className="card-body">
+                            < label htmlFor = 'login head' id = "login-head" > WELCOME! </label>
+                            <label  htmlFor = 'login message' id = "login-msg">Nice to see you again, please login.</label>
                             <div className = 'row justify-content-md-center'>
                                 <div className = 'form-group'>
-                                    <label id = 'login-userpass' for="email" className='mr-sm-2'>Username: </label>
+                                    <label  htmlFor = 'email input' id = 'login-userpass' className='mr-sm-2'>Username: </label>
                                     <input type="email" className="form-control mr-sm-2"  id="email-input" ref='email'/>
                                 </div>
                             </div>
                         <div className = 'row justify-content-md-center'>
                             <div className = 'form-group'>
-                                <label id = 'login-userpass' className = 'mr-sm-2'> Password: </label>
+                                <label  htmlFor = 'pwd input' id = 'login-userpass' className = 'mr-sm-2'> Password: </label>
                                 <input type="password" className="form-control mr-sm-2"  id="pwd-input" ref='pwd'/>
                             </div>
                         </div>
                         <div className = 'row justify-content-md-center'>
-                            <label className = 'mr-sm-2' id='login-status-message'>{message}</label>
+                            <label  htmlFor = 'login status' className = 'mr-sm-2' id='login-status-message'>{message}</label>
                         </div>
                         <div className = 'row justify-content-md-center mr-sm-2' >
                             <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={this.handleSubmit}>Login</button>
