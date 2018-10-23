@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 
 class Post extends Component {
     render() { 
-        const myTitle = this.props.newTitle;
-        const myAuthor = this.props.newAuthor;
-        const myDate = this.props.newDate.toLocaleTimeString();
-        const myBody = this.props.newBody
+        const myTitle = this.props.newPost.aTitle;
+        const myAuthor = this.props.newPost.anAuthor;
+        const myDate = this.props.newPost.aDate.toLocaleTimeString();
+        const myBody = this.props.newPost.aBody
         return (
         <div>
             <div className="container">
