@@ -25,6 +25,7 @@ class Post extends Component {
                     </div>
                 </div>
             </div>
+            <br/>
         </div>
         );
     }

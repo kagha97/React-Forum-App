@@ -1,18 +1,33 @@
 import React, {Component} from 'react';
         
-import Post from './testing-post'
+import Post from './post'
 
 class ViewPost extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            postInfo : {
-                title : '',
-                author : '',
-                date : '',
-                body: ''
+
+        const userPosts = [ // Hardcoded array of post of an user
+            {
+                aTitle : 'Another nice test',
+                anAuthor : 'John Whatever',
+                aDate : new Date(),
+                aBody : 'Whatever whatever...  Blah blah blah... '
+            },
+            {
+                aTitle : 'Extra test',
+                anAuthor : 'Mary Who',
+                aDate : new Date(),
+                aBody : 'Nice text...'
+            },
+            {
+                aTitle : 'Array test',
+                anAuthor : 'Frank Plank',
+                aDate : new Date(),
+                aBody : 'Interesting...'
             }
-        }
+        ];
+
+        this.state = {userPosts};
     }
 
     //---------CDM --------
@@ -25,8 +40,8 @@ class ViewPost extends Component {
 
     render() {
         console.log("------------[renderin view post component]---------------");
-        const aPost = {
-            aTitle : 'Another goddamn test',
+        const aPost = { // Hardcoded single post
+            aTitle : 'Another special test',
             anAuthor : 'John Whatever',
             aDate : new Date(),
             aBody : 'Whatever someone posts here... Or whatever someone posts here... Blah blah blah... Whatever someone posts here... Or whatever someone posts here... Blah blah blah... Whatever someone posts here... Or whatever someone posts here... Blah blah blah...'
@@ -36,32 +51,15 @@ class ViewPost extends Component {
          
             //<div id = "main-panel" className="card  row align-items-center " style={{minHeight: '100vh',width: '23rem', background: '#333333'}}>
             <div>
-                <Post newPost={aPost}/>
-               <img id = "bottom-logo" style = {{objectFit: 'contain'}} className = "mt-auto" src={ require('../images/bowspace logo.png') } />
+                <div>
+                    {this.state.userPosts.map((eachPostOfUser) => (<Post newPost={eachPostOfUser} />))}
+                    {/* <Post newPost={aPost}/> */}
+                </div>
             </div>
                 
             
         );
     }
-
-    // render() {
-    //     console.log("------------[renderin view post component]---------------");
-    //     const aTitle = 'Another goddamn test';
-    //     const anAuthor = 'John Whatever';
-    //     const aDate = new Date();
-    //     const aBody = 'Whatever someone posts here... Or whatever someone posts here... Blah blah blah... Whatever someone posts here... Or whatever someone posts here... Blah blah blah... Whatever someone posts here... Or whatever someone posts here... Blah blah blah...'
-        
-    //     return (
-         
-    //         //<div id = "main-panel" className="card  row align-items-center " style={{minHeight: '100vh',width: '23rem', background: '#333333'}}>
-    //         <div>
-    //             <Post newTitle={aTitle} newAuthor={anAuthor} newDate={aDate} newBody={aBody}/>
-    //            <img id = "bottom-logo" style = {{objectFit: 'contain'}} className = "mt-auto" src={ require('../images/bowspace logo.png') } />
-    //         </div>
-                
-            
-    //     );
-    // }
 }
 
 
