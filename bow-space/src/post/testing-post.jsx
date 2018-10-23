@@ -8,16 +8,20 @@ class Post extends Component {
         const myBody = this.props.newBody
         return (
         <div>
-            <div className="col-sm-12">
-                <div className="panel panel-default">
-                    <div className="panel-heading">
-                        <h4><strong>{myTitle}</strong></h4> 
-                    </div>
-                    <div className="panel-heading">
-                        <strong>by {myAuthor}</strong> <span className="text-muted">{myDate}</span>
-                    </div>
-                    <div className="panel-body">
-                        {myBody}
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="card">
+                            <div className="card-header">
+                                <h4><strong>{myTitle}</strong></h4> 
+                            </div>
+                            <div className="card-body">
+                                {myBody}
+                            </div>
+                            <div className="card-footer">
+                                <strong>by {myAuthor}</strong> - <span className="text-muted">{myDate}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
