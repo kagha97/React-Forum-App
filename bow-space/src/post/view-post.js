@@ -49,14 +49,51 @@ class ViewPost extends Component {
         
         return (
          
-            //<div id = "main-panel" className="card  row align-items-center " style={{minHeight: '100vh',width: '23rem', background: '#333333'}}>
-            <div>
-                <div>
-                    {this.state.userPosts.map((eachPostOfUser) => (<Post newPost={eachPostOfUser} />))}
-                    {/* <Post newPost={aPost}/> */}
-                </div>
+            // <div id = "main-panel" className="row align-items-center " >
+            // {/* <div nameClass="row"> */}
+            //     <div className="col-md-4" style={{minHeight: '100vh',width: '23rem', background: '#333333'}}>
+            //         <p>user-list</p>
+            //     </div>
+
+                // <div className="col-md-8">
+                //     {this.state.userPosts.map((eachPostOfUser) => (<Post newPost={eachPostOfUser} />))}
+                //     {/* <Post newPost={aPost}/> */}
+                // </div>
+            // </div>
+
+
+            <div id = "main-panel" className="row align-items-center " >
+            {/* <div nameClass="row"> */}
+            <div className="col-md-3">
+                        <div className="wrapper">
+                            <nav id="sidebar">
+                                <div className="sidebar-header">
+                                    <h3>USERNAME</h3>
+                                </div>
+                                <ul className="list-unstyled components">
+                                    <p>Online Users:</p>
+                                    <li>
+                                        <a href="#">User 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">User 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">User 3</a>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled customBtn">
+                                    <li><a href="#" class="download">Logout</a></li>
+                                </ul>
+                            </nav>    
+                        </div>
+                    </div>
+
+                    <div className="col-md-9">
+                        {this.state.userPosts.map((eachPostOfUser) => (<Post newPost={eachPostOfUser} />))}
+                        {/* <Post newPost={aPost}/> */}
+                    </div>
             </div>
-                
             
         );
     }
