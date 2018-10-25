@@ -91,7 +91,7 @@ class ViewPost extends Component {
 
                     <div className="col-md-9">
                         {this.state.userPosts.map((eachPostOfUser, index) => 
-                        <div id={index}>
+                        <div id={'post'+index} key={index}>
                             <Post newPost={eachPostOfUser} />
                         </div>
                             )}
