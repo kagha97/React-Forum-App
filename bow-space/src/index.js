@@ -1,6 +1,6 @@
 import  React  from "react";
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 // importing component for routing to different pages
 import "./style.css";
@@ -9,8 +9,6 @@ import Login from './login/login';
 
 //testing imports 
 // change all the test component and pages to final componenet
-import PostTest from "./post/post-test";
-import  UserListTest  from "./user/user-list-test";
 import UserListPanel from "./user/user-list";
 import ViewPost from "./post/view-post";
 import userHardcodedPosts from './post/hardcoded-posts'
@@ -21,9 +19,10 @@ class App extends React.Component {
         super(props);
         this.state = {
             loginCredentials : {
-                status : '',
-                userId : '',
-                loginToken : ''
+                Status : '',
+                UserId : '',
+                LoginToken : '',
+                UserName : ''
             },
             loginAttempt : {
                 message : '',
@@ -34,12 +33,13 @@ class App extends React.Component {
     }
 
     handleLogin = (newCredentials) => {
-        if (newCredentials.status === "success") {
+        // change state of app if login attempt was successful or not
+        if (newCredentials.Status === "success") {
             this.setState(
                 {
                     loginCredentials : newCredentials,
                     loginAttempt : {
-                        message : "",
+                        message : '',
                         loginStatus : true
                     }
                 }
@@ -49,7 +49,7 @@ class App extends React.Component {
             this.setState(
                 {
                     loginAttempt : {
-                        message : "Try Again!",
+                        message : "Invalid credentials used. Try Again Please!",
                         loginStatus : false
                     }
                 }
@@ -57,16 +57,36 @@ class App extends React.Component {
         }
     }
 
+    // logout user
+    handleLogout = () => {
+        console.log("-------------[handleLogout]----------");
+        this.setState(
+            {
+                loginCredentials : {
+                    Status : '',
+                    UserId : '',
+                    LoginToken : '',
+                    UserName : ''
+                },
+                loginAttempt : {
+                    message : '',
+                    loginStatus : false,
+                }
+            }
+        );
+    }
+
     //rendering app component
     render() {
         const loginAttempt = this.state.loginAttempt;
+        const loginStatus = loginAttempt.loginStatus;
         const loginCredentials = this.state.loginCredentials;
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route exact path='/' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
-                    <Route path='/user' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} userPosts={userHardcodedPosts}/>}/>
-                    {/* <Route path='/post' component={(...props) => <ViewPost/>}/> */}
+                    <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
+                    {loginStatus === false ? <Redirect to="/login" /> : ''}
+                    <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>
