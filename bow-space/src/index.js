@@ -84,7 +84,7 @@ class App extends React.Component {
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
                     {/* {loginStatus === false ? <Redirect to="/login" /> : ''} */}
                     <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/>
-                    <Route path = 'new-post' component ={NewPost}/>
+                    <Route path = '/new-post' component ={NewPost}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>
