@@ -12,6 +12,9 @@
     margin-left: 2.8em;
 }
 
+#login-status-message {
+    color: red;
+}
 
 #email-input {
    background-color: rgb(40, 40, 40);

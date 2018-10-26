@@ -49,21 +49,19 @@ function authenticateUser(userInputs, Login) {
     let loginCredentials = { Status: '', UserId : '', LoginToken : '', UserName : ''}
     GetUserAuth({ EmailAddress: userInputs.email, Password : userInputs.pwd})
         .then(result => {
-            if (result.Status == 'success') {
+            console.log(result);
+            if (result.Status === 'success') {
                 loginCredentials.Status = result.Status;
                 loginCredentials.UserId = result.Login.UserId;
                 loginCredentials.LoginToken = result.Login.LoginToken;
                 loginCredentials.UserName = result.Login.UserName;
-                Login(loginCredentials);
             }
+            Login(loginCredentials);
         })
         .catch(error => {
             console.error(error);
-            return loginCredentials;
-        });
+        })
 }
-
-
 
 class Login extends React.Component {
     render() {

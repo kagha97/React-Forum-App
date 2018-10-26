@@ -6,8 +6,10 @@ const GetUserAuth = (loginAttempt) => {
                 const RequestOptions = { method:"POST", cache:'no-cache', mode:'cors', credentials:'omit', redirect:'error', body:JSON.stringify(loginAttempt) };
 				return (fetch(URL, RequestOptions));
 			})
+			.then((Response) => {
+				return (Response.json())
+			});
 }
-
 
 
 export { GetUserAuth };
