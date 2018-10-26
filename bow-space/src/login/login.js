@@ -1,5 +1,6 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { GetUserAuth } from "../API/fetch.js";
 
 class LoginForm extends React.Component {
 
@@ -7,13 +8,12 @@ class LoginForm extends React.Component {
         let email = this.refs.email.value;
         let pwd = this.refs.pwd.value;
         let userInputs = {email, pwd};
-        let newCredentials = authenticateUser(userInputs);
-        this.props.OnSubmitLogin(newCredentials);
+        authenticateUser(userInputs, this.props.OnSubmitLogin);
     }
 
     render () {
         const message = this.props.loginAttempt.message;
-        return (
+        return (    
             <div className= 'row justify-content-md-center'> 
                 <div className="card  bg-dark mb-3" id='login-form' style={{width:'21em'}}>
                     <div className = 'card-header'>  <img id = "logo" src={ require('../images/bowspace logo.png')} alt='bowspace'/></div> 
@@ -45,34 +45,27 @@ class LoginForm extends React.Component {
     }
 }
 
-function postRequest(url, emailAddress, password) {
-    return fetch(url, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                EmailAddress: emailAddress,
-                Password: password,
-            }).then(response => response.json())
+function authenticateUser(userInputs, Login) {
+    let loginCredentials = { Status: '', UserId : '', LoginToken : '', UserName : ''}
+    GetUserAuth({ EmailAddress: userInputs.email, Password : userInputs.pwd})
+        .then(result => {
+            if (result.Status == 'success') {
+                loginCredentials.Status = result.Status;
+                loginCredentials.UserId = result.Login.UserId;
+                loginCredentials.LoginToken = result.Login.LoginToken;
+                loginCredentials.UserName = result.Login.UserName;
+                Login(loginCredentials);
+            }
         })
+        .catch(error => {
+            console.error(error);
+            return loginCredentials;
+        });
 }
 
-function authenticateUser(userInputs) {
-    let loginCredentials = { status: '', userId : '', loginToken : ''}
-    if (userInputs.email !== '' && userInputs.pwd !== '') {
-        //replace with api call
-        console.log("-----------[fetch]---------");
-        console.log("---------[fetch complete]-----------");
-        loginCredentials = { status: 'success', userId : 'b.patel405', loginToken : 'bvc'}
-    }
-    return loginCredentials;
-}
 
 
 class Login extends React.Component {
-
     render() {
         const loginAttempt = this.props.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;

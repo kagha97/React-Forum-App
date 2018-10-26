@@ -18,9 +18,10 @@ class App extends React.Component {
         super(props);
         this.state = {
             loginCredentials : {
-                status : '',
-                userId : '',
-                loginToken : ''
+                Status : '',
+                UserId : '',
+                LoginToken : '',
+                UserName : ''
             },
             loginAttempt : {
                 message : '',
@@ -31,7 +32,7 @@ class App extends React.Component {
 
     handleLogin = (newCredentials) => {
         // change state of app if login attempt was successful or not
-        if (newCredentials.status === "success") {
+        if (newCredentials.Status === "success") {
             this.setState(
                 {
                     loginCredentials : newCredentials,
@@ -60,9 +61,10 @@ class App extends React.Component {
         this.setState(
             {
                 loginCredentials : {
-                    status : '',
-                    userId : '',
-                    loginToken : ''
+                    Status : '',
+                    UserId : '',
+                    LoginToken : '',
+                    UserName : ''
                 },
                 loginAttempt : {
                     message : '',
