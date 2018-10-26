@@ -13,7 +13,7 @@ import PostTest from "./post/post-test";
 import  UserListTest  from "./user/user-list-test";
 import UserListPanel from "./user/user-list";
 import ViewPost from "./post/view-post";
-
+import userHardcodedPosts from './post/hardcoded-posts'
 
 class App extends React.Component {
     //app constructor
@@ -28,7 +28,8 @@ class App extends React.Component {
             loginAttempt : {
                 message : '',
                 loginStatus : false,
-            }
+            },
+            userPosts : userHardcodedPosts
         }
     }
 
@@ -64,8 +65,8 @@ class App extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
-                    <Route path='/user' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials}/>}/>
-                    <Route path='/post' component={(...props) => <ViewPost/>}/>
+                    <Route path='/user' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} userPosts={userHardcodedPosts}/>}/>
+                    {/* <Route path='/post' component={(...props) => <ViewPost/>}/> */}
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>
