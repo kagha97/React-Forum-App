@@ -1,8 +1,11 @@
 const GetUserAuth = (loginAttempt) => {
-    const URL = 'http://api.bowspace.ca/rest/auth/login';
+	const URL = 'http://api.bowspace.ca/rest/auth/login';
+	const headers = new Headers({
+		'Content-Type': 'application/x-www-form-urlencoded',
+	})
     return (Promise.resolve())
 			.then(() => {
-                const RequestOptions = { method:"POST", cache:'no-cache', mode:'cors', credentials:'omit', redirect:'error', body:JSON.stringify(loginAttempt) };
+                const RequestOptions = { method:"POST", headers : headers, cache:'no-cache', mode:'cors', credentials:'omit', redirect:'error', body:JSON.stringify(loginAttempt) };
 				return (fetch(URL, RequestOptions));
 			})
 			.then((Response) => {
@@ -16,8 +19,8 @@ const GetAllRegisteredUsers = (loginToken) => {
 	const headers = new Headers({
 		'Content-Type': 'application/x-www-form-urlencoded',
 		'Authorization': 'Bearer ' + loginToken
-	})
-	const param = '?userid=0&keywords=' 
+	});
+	const param = '?userid=0&keywords=';
 	return (Promise.resolve())
 			.then(() => {
                 const RequestOptions = { method:"GET", headers : headers, cache:'no-cache', mode:'cors', credentials:'omit', redirect:'error' };
@@ -45,4 +48,26 @@ const GetMyPost = (loginUserId, loginToken) => {
 			});
 }
 
-export { GetUserAuth, GetAllRegisteredUsers, GetMyPost };
+const SendPostMessege = (loginCredentials, messege) => {
+	const post =  {
+		PostId : 0,
+		SenderId : loginCredentials.UserId,
+		RecipientId : messege.ReceipientId,
+		PostHtml: messege.PostHtml
+	}; 
+	const headers = new Headers({
+		'Content-Type': 'application/x-www-form-urlencoded',
+		'Authorization': 'Bearer ' + loginCredentials.LoginToken
+	})
+    const URL = 'http://api.bowspace.ca/rest/post';
+    return (Promise.resolve())
+			.then(() => {
+                const RequestOptions = { method:"POST", headers : headers, cache:'no-cache', mode:'cors', credentials:'omit', redirect:'error', body:JSON.stringify(post) };
+				return (fetch(URL, RequestOptions));
+			})
+			.then((Response) => {
+				return (Response.json())
+			});
+}
+
+export { GetUserAuth, GetAllRegisteredUsers, GetMyPost, SendPostMessege };
