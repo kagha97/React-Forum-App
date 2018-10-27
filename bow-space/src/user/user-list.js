@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { GetAllRegisteredUsers } from "../API/fetch.js";
 
 function UserInfo(props) {
     return (
@@ -36,7 +37,13 @@ class UserList extends React.Component {
 
 
 class UserListPanel extends React.Component {
-
+    componentDidMount() {
+        GetAllRegisteredUsers(this.props.loginCredentials.LoginToken)
+            .then(result => console.log(result))
+            .catch(error => {
+                console.error(error);
+            });
+    }
     render() {
         return (
             <div id = "main-panel" className="card  row align-items-center " style={{minHeight: '100vh',width: '23rem', background: '#333333'}}>
