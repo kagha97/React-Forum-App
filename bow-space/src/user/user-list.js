@@ -1,5 +1,4 @@
 import React from 'react';
-import { GetAllRegisteredUsers, GetMyPost, SendPostMessege } from "../API/fetch.js";
 
 function UserInfo(props) {
     return (
@@ -38,25 +37,6 @@ class UserList extends React.Component {
 
 class UserListPanel extends React.Component {
     componentDidMount() {
-        GetAllRegisteredUsers(this.props.loginCredentials.LoginToken)
-            .then(result => console.log(result))
-            .catch(error => {
-                console.error(error);
-            });
-        GetMyPost(this.props.loginCredentials.UserId, this.props.loginCredentials.LoginToken)
-        .then(result => console.log(result))
-        .catch(error => {
-            console.error(error);
-        });
-        // const messege = {
-        //     ReceipientId : this.props.loginCredentials.UserId,
-        //     PostHtml : "Test Messege!"
-        // };
-        // SendPostMessege(this.props.loginCredentials, messege)
-        //     .then(result => console.log(result))
-        //     .catch(error => {
-        //         console.error(error);
-        //     });
     }
     render() {
         return (
