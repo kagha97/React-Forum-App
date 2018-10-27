@@ -11,6 +11,9 @@ import Login from './login/login';
 // change all the test component and pages to final componenet
 import UserListPanel from "./user/user-list";
 
+//importing components from view-post
+import ViewPost from "./post/view-post";
+import userHardcodedPosts from './post/hardcoded-posts'
 
 class App extends React.Component {
     //app constructor
@@ -26,7 +29,8 @@ class App extends React.Component {
             loginAttempt : {
                 message : '',
                 loginStatus : false,
-            }
+            },
+            userPosts : userHardcodedPosts
         }
     }
 
@@ -84,7 +88,8 @@ class App extends React.Component {
                 <Switch>
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/>
+                    {/* <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/> */}
+                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userPosts={userHardcodedPosts}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>
