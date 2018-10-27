@@ -48,15 +48,15 @@ class UserListPanel extends React.Component {
         .catch(error => {
             console.error(error);
         });
-        const messege = {
-            ReceipientId : this.props.loginCredentials.UserId,
-            PostHtml : "Test Messege!"
-        };
-        SendPostMessege(this.props.loginCredentials, messege)
-            .then(result => console.log(result))
-            .catch(error => {
-                console.error(error);
-            });
+        // const messege = {
+        //     ReceipientId : this.props.loginCredentials.UserId,
+        //     PostHtml : "Test Messege!"
+        // };
+        // SendPostMessege(this.props.loginCredentials, messege)
+        //     .then(result => console.log(result))
+        //     .catch(error => {
+        //         console.error(error);
+        //     });
     }
     render() {
         return (
