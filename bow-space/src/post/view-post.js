@@ -18,7 +18,7 @@ class ViewPost extends Component {
             <div id = "main-panel" className="row align-items-center " >
 
                 <div className="col-md-4">
-                    <UserListPanel loginCredentials={loginCredentials}/>
+                    <UserListPanel loginCredentials={loginCredentials} OnLogout={this.props.OnLogout}/>
                 </div>
 
                 <div className="col-md-8">

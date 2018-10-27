@@ -61,7 +61,6 @@ class App extends React.Component {
 
     // logout user
     handleLogout = () => {
-        console.log("-------------[handleLogout]----------");
         this.setState(
             {
                 loginCredentials : {
