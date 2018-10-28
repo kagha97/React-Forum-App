@@ -13,5 +13,30 @@ const GetUserAuth = (loginAttempt) => {
 			});
 }
 
+function GetUserList(token, id) {
+    console.log('my fetch');
+    var url = 'http://api.bowspace.ca/rest/users?userid=' + id +'&keywords=';
+    const headers = new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded',
+    })
+    const otherPrams = {
+        headers: headers,
+        method: 'GET',
+        mode: 'cors',
+        cache: "no-cache",
+        credentials: 'omit',
+        headers : new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded',
 
-export { GetUserAuth };
+        Authorization: 'Bearer' + token
+        })
+    };
+
+
+   return (fetch(url, otherPrams).then(data=>data.json()))
+
+}
+
+
+
+export { GetUserAuth, GetUserList };
