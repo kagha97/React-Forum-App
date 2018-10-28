@@ -24,38 +24,46 @@ class App extends React.Component {
                 Status : '',
                 UserId : '',
                 LoginToken : '',
-                UserName : ''
+                UserName : '',
             },
             loginAttempt : {
                 message : '',
                 loginStatus : false,
+                waitNeeded: false,
             },
-            userPosts : userHardcodedPosts
+            userPosts : userHardcodedPosts,
         }
+    }
+
+    //handle wait
+    handleWait = () => {
+        this.setState({
+                loginAttempt: {
+                    waitNeeded: true
+                }
+            });
     }
 
     handleLogin = (newCredentials) => {
         // change state of app if login attempt was successful or not
         if (newCredentials.Status === "success") {
-            this.setState(
-                {
+            this.setState({
                     loginCredentials : newCredentials,
                     loginAttempt : {
                         message : '',
-                        loginStatus : true
+                        loginStatus : true,
+                        waitNeeded : false,
                     }
-                }
-            );
+            });
         }
         else {
-            this.setState(
-                {
+            this.setState({
                     loginAttempt : {
                         message : "Invalid credentials used. Try Again Please!",
-                        loginStatus : false
+                        loginStatus : false,
+                        waitNeeded : false,
                     }
-                }
-            );
+            });
         }
     }
 
@@ -77,6 +85,7 @@ class App extends React.Component {
         );
     }
 
+
     //rendering app component
     render() {
         const loginAttempt = this.state.loginAttempt;
@@ -85,7 +94,7 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
+                    <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} handleWait={this.handleWait} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
                     {/* <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/> */}
                     <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userPosts={userHardcodedPosts}/>}/>

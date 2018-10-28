@@ -1,10 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { GetUserAuth } from "../API/fetch.js";
+import Wait from '../API/loader.js';
 
 class LoginForm extends React.Component {
 
     handleSubmit = () => {
+        this.props.handleWait();
         let email = this.refs.email.value;
         let pwd = this.refs.pwd.value;
         let userInputs = {email, pwd};
@@ -13,6 +15,7 @@ class LoginForm extends React.Component {
 
     render () {
         const message = this.props.loginAttempt.message;
+        const waitNeeded = this.props.loginAttempt.waitNeeded;
         return (    
             <div className= 'row justify-content-md-center'> 
                 <div className="card  bg-dark mb-3" id='login-form' style={{width:'21em'}}>
@@ -33,7 +36,7 @@ class LoginForm extends React.Component {
                             </div>
                         </div>
                         <div className = 'row justify-content-md-center'>
-                            <label  htmlFor = 'login status' className = 'mr-sm-2' id='login-status-message'>{message}</label>
+                            <label  htmlFor = 'login status' className = 'mr-sm-2' id='login-status-message'>{ waitNeeded ? <Wait/> : message }</label>
                         </div>
                         <div className = 'row justify-content-md-center mr-sm-2' >
                             <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={this.handleSubmit}>Login</button>
@@ -49,7 +52,6 @@ function authenticateUser(userInputs, Login) {
     let loginCredentials = { Status: '', UserId : '', LoginToken : '', UserName : ''}
     GetUserAuth({ EmailAddress: userInputs.email, Password : userInputs.pwd})
         .then(result => {
-            console.log(result);
             if (result.Status === 'success') {
                 loginCredentials.Status = result.Status;
                 loginCredentials.UserId = result.Login.UserId;
@@ -67,10 +69,11 @@ class Login extends React.Component {
     render() {
         const loginAttempt = this.props.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;
+        const handleWait = this.props.handleWait;
         return (
             <div id = 'login-background'>
-                    {loginStatus === true ? <Redirect to='/' /> : ''}
-                    <LoginForm loginAttempt={loginAttempt} OnSubmitLogin={this.props.OnSubmitLogin}/>
+                {loginStatus === true ? <Redirect to='/' /> : ''}
+                <LoginForm loginAttempt={loginAttempt} handleWait={handleWait} OnSubmitLogin={this.props.OnSubmitLogin}/>
             </div>
         );
     }
