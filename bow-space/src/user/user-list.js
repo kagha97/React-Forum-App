@@ -22,7 +22,6 @@ class UserList extends React.Component {
 
     componentDidMount() {
          var theUsers = GetUserList(this.props.loginCredential.LoginToken);
-         theUsers.then(resp => {return resp.json()})
          theUsers.then(data => {
             var mappedData = data.MatchingUsers;
             var mappedData = mappedData.map((users, index) => <li key={index}><button key={index} class="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{users.UserName}</button></li> );
