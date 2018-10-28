@@ -13,7 +13,7 @@ Wait.defaultProps = {
     height: 30,
     width: 30,
     color: 'white',
-    type: 'Oval'
+    type: 'ThreeDots'
 }
 
 export default Wait;
