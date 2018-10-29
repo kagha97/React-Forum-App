@@ -119,10 +119,10 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} handleWait={this.handleWait} OnSubmitLogin={this.handleLogin}/>}/>
-                    {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/>
-                    {/* <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userPosts={userHardcodedPosts}/>}/> */}
+                    <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} OnSubmitLogin={this.handleLogin}/>}/>
+                    {/* {loginStatus === false ? <Redirect to="/login" /> : ''} */}
+                    {/* <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/> */}
+                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userPosts={userHardcodedPosts}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>
