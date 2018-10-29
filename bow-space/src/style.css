@@ -88,29 +88,30 @@
 #profile {
     margin-top: 3em;
     border-radius: 80%;
-    width: 4em;
-    height: 4em;
-} 
+    width: 2em;
+    height: 2em;
+}
 
 #main-panel {
-  
-    overflow: hidden;
+    height: 1em;
+    width: 23rem;
+    background: #333333;
 }
 
-#user-list-label {
-    display: block;
+#user-list-panel {
+    /* display: block;
     text-align: center;
-    line-height: 150%;
-    font-size: 2em;
-    color: white;
-    margin-top: 2em;
+    font-size: 1.5em;
+    color: white; */
+    width: 80%;
+    height: 40%;
+    margin-top: 5%;
+    overflow: auto;
 }
 
-#user-list {
-    overflow:auto;
-    
+#user-list-item {
+    margin-top: 5%;
 }
-
 
 #firstlastname {
     display: block;

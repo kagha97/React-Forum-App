@@ -4,21 +4,17 @@ import Post from './post'
 import userHardcodedPosts from './hardcoded-posts'
 
 class ViewPost extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         console.log("------------[renderin view-post component]---------------");
         const userPosts = this.props.userPosts;
         const loginCredentials = this.props.loginCredentials;
-
+        const OnGetUserList = this.props.OnGetUserList;
+        const userList = this.props.userList;
         return (
-
-            <div id = "main-panel" className="row align-items-center " >
+            <div className="row" >
 
                 <div className="col-md-4">
-                    <UserListPanel loginCredentials={loginCredentials} OnLogout={this.props.OnLogout}/>
+                    <UserListPanel loginCredentials={loginCredentials} OnGetUserList={OnGetUserList} userList={userList} OnLogout={this.props.OnLogout}/>
                 </div>
 
                 <div className="col-md-8">
@@ -26,7 +22,7 @@ class ViewPost extends Component {
                     <div id={'post'+index} key={index}>
                         <Post newPost={eachPostOfUser} />
                     </div>
-                        )}
+                    )}
                 </div>
 
             </div>

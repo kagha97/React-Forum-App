@@ -31,6 +31,7 @@ class App extends React.Component {
                 loginStatus : false,
                 waitNeeded: false,
             },
+            userList : [],
             userPosts : userHardcodedPosts,
         }
     }
@@ -97,6 +98,12 @@ class App extends React.Component {
         sessionStorage.setItem("UserName", '');
     }
 
+    updateUserList = (userList) => {
+        this.setState({
+            userList : userList
+        });
+    }
+
     componentDidMount() {
         const currentCredentials = this.state.loginCredentials;
         if (currentCredentials.Status !== 'success' && sessionStorage.getItem('Status') === 'success') {
@@ -115,14 +122,14 @@ class App extends React.Component {
         const loginAttempt = this.state.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;
         const loginCredentials = this.state.loginCredentials;
-        console.log(loginStatus);
+        const userList = this.state.userList;
         return (
             <BrowserRouter>
                 <Switch>
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} handleWait={this.handleWait} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/>
-                    {/* <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userPosts={userHardcodedPosts}/>}/> */}
+                    {/* <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/> */}
+                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} OnGetUserList={this.updateUserList} userPosts={userHardcodedPosts}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>

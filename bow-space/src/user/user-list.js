@@ -1,6 +1,8 @@
 import React from 'react';
-import {GetUserList} from '../API/fetch.js'
-function UserInfo(props) {
+import { GetAllRegisteredUsers } from '../API/fetch.js'
+import { Link } from 'react-router-dom'
+
+const UserInfo = (props) => {
     return (
         <div className="card row align-items-center" style={{width: '23rem', background:'#0077b3'}}>
             <img id = "profile" className="card-img-top" src= { require('../images/avatar.png')} alt="User Profile"/>
@@ -14,47 +16,45 @@ function UserInfo(props) {
 }
 
 class UserList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {list : '', final : ''};
-    } 
-
 
     componentDidMount() {
-         var theUsers = GetUserList(this.props.loginCredential.LoginToken);
-         theUsers.then(data => {
-            var mappedData = data.MatchingUsers;
-            var mappedData = mappedData.map((users, index) => <li key={index}><button key={index} class="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{users.UserName}</button></li> );
-            this.setState({list: mappedData})})
+        console.log("-------------[UserList CDM]------------");
+        const LoginToken = this.props.loginCredential.LoginToken;
+        GetAllRegisteredUsers(LoginToken)
+            .then(result => {
+                if (result.Status === 'success' && this.props.userList.length !== result.MatchingUsers.length) {
+                    this.props.OnGetUserList(result.MatchingUsers);
+                    console.log(this.props.userList.length);
+                }
+            })
+            .catch(error => console.error(error))
     }
-  
+
     render () {
-      var user = this.state.list
-     return (
-        <div>     
-            <label id='user-list-label'>User List</label>
-            <div className="card" style={{width: '18rem', background: '#0099ff'}}></div> 
-            <ul  id = 'user-list' className="list-group list-group-flush align-items-center " style = {{maxHeight: '25em'}}>
-             {user}
-            </ul>
-        </div>
+        const users = this.props.userList;
+        return (
+            <div id = "user-list-panel" >
+                <ul className="list-group">  
+                    {users.map( (user) =>      
+                        <div id='user-list-item' key={user.index}>
+                            <Link to='/' class="list-group-item card bg-dark text-white" key={user}>{user.UserName}</Link>
+                        </div>
+                    )}
+                </ul>
+            </div>
         );
     }
 }
 
 
 class UserListPanel extends React.Component {
-    
-    componentDidMount() {
-       // console.log('"' + this.props.loginCredentials.LoginToken + '"');
-       
-    }
     render() {
+        const userList = this.props.userList;
+        const OnGetUserList = this.props.OnGetUserList;
         return (
             <div id = "main-panel" className="card  row align-items-center " style={{minHeight: '100vh',width: '23rem', background: '#333333'}}>
                 <UserInfo  OnLogout={this.props.OnLogout} loginCredential={this.props.loginCredentials}/>
-                <UserList loginCredential={this.props.loginCredentials}/>
-                
+                <UserList loginCredential={this.props.loginCredentials} userList={userList} OnGetUserList={OnGetUserList}/>     
                 <img id = "bottom-logo" style = {{objectFit: 'contain'}} className = "mt-auto" src={ require('../images/bowspace logo.png')} alt='logo'/>
             </div>
         );
