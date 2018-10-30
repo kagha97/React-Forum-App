@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {SendPostMessege} from '../API/fetch'
 /*ref*/
 const Modal = ({ handleClose, show, children }) => {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
@@ -19,8 +20,16 @@ const Modal = ({ handleClose, show, children }) => {
 };
 class NewPost extends React.Component {
 
-    componentDidMount() {
-        
+    handleSubmit = () => {
+        console.error("---------------[handlesubmit]------------------");
+        const message = {
+            ReceipientId : this.props.loginCredentials.UserId,
+            PostHtml : this.refs.body.value,
+        }
+        SendPostMessege(this.props.loginCredentials , message)
+            .then(result => console.log(result))
+            .catch(error => console.error(error));
+        this.props.handleModalShow();
     }
 
     render() {

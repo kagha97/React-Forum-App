@@ -37,6 +37,27 @@ function GetUserList(token, id) {
 
 }
 
+const SendPostMessege = (loginCredentials, messege) => {
+	const post =  {
+		PostId : 0,
+		SenderId : loginCredentials.UserId,
+		RecipientId : messege.ReceipientId,
+		PostHtml: messege.PostHtml
+	}; 
+	console.log(post);
+	const headers = new Headers({
+		'Content-Type': 'application/x-www-form-urlencoded',
+		'Authorization': 'Bearer ' + loginCredentials.LoginToken
+	})
+    const URL = 'http://api.bowspace.ca/rest/post';
+    return (Promise.resolve())
+			.then(() => {
+                const RequestOptions = { method:"POST", headers : headers, cache:'no-cache', mode:'cors', credentials:'omit', redirect:'error', body:JSON.stringify(post) };
+				return (fetch(URL, RequestOptions));
+			})
+			.then((Response) => {
+				return (Response.json())
+			});
+}
 
-
-export { GetUserAuth, GetUserList };
+export { GetUserAuth, GetUserList, SendPostMessege };
