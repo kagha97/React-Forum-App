@@ -161,7 +161,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} handleWait={this.handleWait} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    <Route exact path='/' component={(...props) => <Home  {...props} viewPostProps={viewPostProps} userListPanelProps={userListPanelProps} newPostProps={newPostProps}/>}/>
+                    <Route exact path='/:UserId?' component={(...props) => <Home  {...props} viewPostProps={viewPostProps} userListPanelProps={userListPanelProps} newPostProps={newPostProps}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>

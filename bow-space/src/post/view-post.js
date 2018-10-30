@@ -18,10 +18,14 @@ class ViewPost extends Component {
         const viewPostProps = this.props.viewPostProps;
         const loginCredentials = viewPostProps.loginCredentials;
         const posts = viewPostProps.userPosts.posts;
-        const user = viewPostProps.userPosts.user;
         const UpdateUserPost = viewPostProps.UpdateUserPost;
-        GetMyPost(loginCredentials.UserId, loginCredentials.LoginToken)
+        var user = loginCredentials.UserId;
+        if (this.props.userSpaceId) {
+            user = this.props.userSpaceId;
+        }
+        GetMyPost(user, loginCredentials.LoginToken)
             .then(result => {
+                console.table(result);
                 var fetchPosts = result.MatchingPosts;
                 if (posts.length !== fetchPosts.length) {
                     UpdateUserPost('', fetchPosts);
@@ -42,7 +46,6 @@ class ViewPost extends Component {
     render() {
         const viewPostProps = this.props.viewPostProps;
         const posts = viewPostProps.userPosts.posts;
-        const user = viewPostProps.userPosts.user;
         return (
             <div className="col-md-8">
                 {

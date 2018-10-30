@@ -51,7 +51,7 @@ class UserList extends React.Component {
             <ul  id = 'user-list' className="list-group list-group-flush align-items-center" style = {{maxHeight: '25em'}}>
              {
                  users.map((user) =><li key={user.UserId}>
-                 <Link to = {'/userid='+user.UserId}><button className="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></Link>
+                 <Link to = {'/'+user.UserId}><button className="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></Link>
                  </li> )
              }
             </ul>

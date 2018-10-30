@@ -8,13 +8,14 @@ class Home extends React.Component {
         const viewPostProps = this.props.viewPostProps;
         const userListPanelProps = this.props.userListPanelProps;
         const newPostProps = this.props.newPostProps;
+        const userSpaceId = this.props[0].match.params.UserId;
         return(
             <div id="main-panel" className="row align-items-center">
                 <div className = "col-md-4">
                     <UserListPanel userListPanelProps={userListPanelProps}/>
                 </div>
                 <div className="col-md-8">
-                    <ViewPost viewPostProps={viewPostProps}/>
+                    <ViewPost viewPostProps={viewPostProps} userSpaceId={userSpaceId}/>
                 </div>
                 <NewPost newPostProps={newPostProps}/>
             </div>
