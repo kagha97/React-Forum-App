@@ -202,7 +202,7 @@
     box-shadow: 10px 10px 5px rgba(125, 124, 124, 0.214);
 }
 
-a.newPostButton{
+div.newPostButton {
     position: fixed;
     top: 40px;
     right: 40px;
@@ -220,15 +220,24 @@ a.newPostButton{
     color:#FFFFFF;
     text-align:center;
     transition: all 0.2s;
+    background-color: transparent;
     }
-    a.newPostButton:hover{
+
+    div.newPostButton:hover{
     color: white;
     background-color:purple;
-
     }
+
     @media all and (max-width:40em){
-     a.newPostButton{
+    div.newPostButton{
         display:block;
         margin:0.4em auto;
     }
+}
+
+.receipient-button
+{
+    background-color: #47748b;
+    color: white;
+    border-radius: 50px;
 }

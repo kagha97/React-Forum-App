@@ -16,23 +16,16 @@ const GetUserAuth = (loginAttempt) => {
 function GetUserList(token, id) {
     console.log('my fetch');
     var url = 'http://api.bowspace.ca/rest/users?userid=' + id +'&keywords=';
-    const headers = new Headers({
-        'Content-Type': 'application/x-www-form-urlencoded',
-    })
     const otherPrams = {
-        headers: headers,
         method: 'GET',
         mode: 'cors',
         cache: "no-cache",
         credentials: 'omit',
         headers : new Headers({
             'Content-Type': 'application/x-www-form-urlencoded',
-
-        Authorization: 'Bearer' + token
+        	 Authorization: 'Bearer' + token
         })
     };
-
-
    return (fetch(url, otherPrams).then(data=>data.json()))
 
 }
@@ -48,6 +41,29 @@ const GetMyPost = (loginUserId, loginToken) => {
 			.then(() => {
                 const RequestOptions = { method:"GET", headers : headers, cache:'no-cache', mode:'cors', credentials:'omit', redirect:'error' };
 				return (fetch(URL + param, RequestOptions));
+				})
+				.then((Response) => {
+					return (Response.json())
+				});
+}
+
+const SendPostMessege = (loginCredentials, messege) => {
+	const post =  {
+		PostId : 0,
+		SenderId : loginCredentials.UserId,
+		RecipientId : messege.ReceipientId,
+		PostHtml: messege.PostHtml
+	}; 
+	console.log(post);
+	const headers = new Headers({
+		'Content-Type': 'application/x-www-form-urlencoded',
+		'Authorization': 'Bearer ' + loginCredentials.LoginToken
+	})
+    const URL = 'http://api.bowspace.ca/rest/post';
+    return (Promise.resolve())
+			.then(() => {
+                const RequestOptions = { method:"POST", headers : headers, cache:'no-cache', mode:'cors', credentials:'omit', redirect:'error', body:JSON.stringify(post) };
+				return (fetch(URL, RequestOptions));
 			})
 			.then((Response) => {
 				return (Response.json())
@@ -55,4 +71,4 @@ const GetMyPost = (loginUserId, loginToken) => {
 }
 
 
-export { GetUserAuth, GetUserList, GetMyPost };
+export { GetUserAuth, GetUserList, GetMyPost, SendPostMessege };

@@ -7,13 +7,8 @@ import "./style.css";
 import Whoops404 from './error-page';
 import Login from './login/login';
 
-//testing imports 
-// change all the test component and pages to final componenet
-import UserListPanel from "./user/user-list";
-
 //importing components from view-post
 import ViewPost from "./post/view-post";
-
 
 class App extends React.Component {
     //app constructor
@@ -31,8 +26,20 @@ class App extends React.Component {
                 loginStatus : false,
                 waitNeeded: false,
             },
-            userList : []
+            userList : [],
+            newPostProps : {
+                modalShow : false,
+            }
         }
+    }
+
+    handleModalShow = () => {
+        console.log("------------[model show called]-----------");
+        this.setState ({
+            newPostProps : {
+                modalShow : !this.state.newPostProps.modalShow,
+            }
+        })
     }
 
     //handle wait
@@ -133,8 +140,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} handleWait={this.handleWait} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    {/* <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} OnGetUserList={this.updateUserList} userPosts={userHardcodedPosts}/>}/> */}
-                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} setUserList = {this.setUserList}/>}/>
+                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} setUserList = {this.setUserList} handleModalShow={this.handleModalShow} newPostProps={this.state.newPostProps}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>

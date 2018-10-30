@@ -68,24 +68,8 @@ class UserList extends React.Component {
 }
 
 class UserListPanel extends React.Component {
-    constructor(props) {
-        super(props);
-       
-    }
-    
-    componentWillUpdate() {
-     //set the data
-    // PrepareUserList(this.props.loginCredentials.LoginToken ,0 , '', this.props.setUserList);
-     
-    }
 
-    componentDidMount() {
-     // PrepareUserList(this.props.loginCredentials.LoginToken ,0 , '', this.props.setUserList);
-    }
-    
-
-    render() {
-             
+    render() {       
         return (
             <div id = "main-panel" className="card row align-items-center" style={{minHeight: '100vh',width: '23rem', background: '#333333'}}>
                 <UserInfo  OnLogout={this.props.OnLogout} loginCredential={this.props.loginCredentials}/>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import UserListPanel from "../user/user-list";
 import Post from './post'
 import {GetMyPost} from '../API/fetch'
+import NewPost from "./new-post";
 
 class ViewPost extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class ViewPost extends Component {
             </div>
             );
             this.setState({posts: posts})
-            });          
+        });          
     }
     
     render() {
@@ -39,11 +40,7 @@ class ViewPost extends Component {
                 <div className="col-md-8">
                     {posts}
                 </div>
-
-
-                <a href="#" className="newPostButton">+</a>
-                
-
+                <NewPost loginCredentials={loginCredentials} handleModalShow={this.props.handleModalShow} newPostProps={this.props.newPostProps} />
             </div>
             
         );

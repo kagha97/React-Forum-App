@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {SendPostMessege} from '../API/fetch'
 /*ref*/
 const Modal = ({ handleClose, show, children }) => {
-const showHideClassName = show ? "modal display-block" : "modal display-none";
-  
+    const showHideClassName = show ? "modal display-block" : "modal display-none";
     return (
       <div className={showHideClassName}>
         <div id='new-post'>
@@ -14,40 +14,36 @@ const showHideClassName = show ? "modal display-block" : "modal display-none";
           {children}
           </div>
           </div>
-          </div>
+        </div>
       
     );
-  };
+};
+
 class NewPost extends React.Component {
-    state = { show: false };
-  
-    showModal = () => {
-      this.setState({ show: true });
-    };
-  
-    hideModal = () => {
-      this.setState({ show: false });
-    };
-  
+
+    handleSubmit = () => {
+        console.error("---------------[handlesubmit]------------------");
+        const message = {
+            ReceipientId : this.props.loginCredentials.UserId,
+            PostHtml : this.refs.body.value,
+        }
+        SendPostMessege(this.props.loginCredentials , message)
+            .then(result => console.log(result))
+            .catch(error => console.error(error));
+        this.props.handleModalShow();
+    }
     render() {
+        const loginCredentials = this.props.loginCredentials;
+        const newPostProps = this.props.newPostProps;
+        const modalShow = newPostProps.modalShow;
       return (
         <main>
-          <h1>React Modal</h1>
-
-          <Modal show={this.state.show} handleClose={this.hideModal}>
+          <Modal show={modalShow} handleClose = {() => this.props.handleModalShow()}>
           
             <div class="card-body">
             <div className = 'form-group'>
             <div className = 'row justify-content-md-left'>
-                <label id = 'login-userpass' htmlFor="email" className='mr-sm-2'>Username: </label>
-                <input type="email" className="form-control mr-sm-2"  id="email-input" ref='email'/>
-                </div>
-                </div>
-                <div className = 'form-group'>
-                <div className = 'row justify-content-md-left'>
-                <label id = 'login-userpass' htmlFor = 'title' className = 'mr-sm-2'>Title: </label>
-                <input type = 'title' className = 'form-control mr-sm-2' id='email-input' ref='title'/>
-                </div>
+                <label id = 'login-userpass' htmlFor="email" className='mr-sm-2'>Receipient: <button className='receipient-button'>{this.props.loginCredentials.UserName}</button></label>                </div>
                 </div>
                 <div className = 'form-group'>
                 <div className = 'row justify-content-md-left'>
@@ -60,19 +56,12 @@ class NewPost extends React.Component {
                 <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={this.handleSubmit}>Send</button>
                 </div>
                 </div>
-            </div>
-            
+            </div> 
           </Modal>
-          <button type="button" onClick={this.showModal}>
-            open
-          </button>
+            <div id='new-post-button' className="newPostButton" onClick={() => this.props.handleModalShow()}>+</div>
         </main>
       );
     }
 }
-  
- const container = document.createElement("div");
-  document.body.appendChild(container);
-  ReactDOM.render(<NewPost />, container);
 
 export default NewPost;
