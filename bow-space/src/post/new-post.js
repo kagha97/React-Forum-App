@@ -1,6 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {SendPostMessege} from '../API/fetch'
+
+
 /*ref*/
 const Modal = ({ handleClose, show, children }) => {
     const showHideClassName = show ? "modal display-block" : "modal display-none";

@@ -38,7 +38,7 @@ class ViewPost extends Component {
                 <div className="col-md-8">
                     {
                         posts.map((post) => 
-                            <div key={post.index}>
+                            <div key={post.PostId}>
                                 <Post newPost={post}/>
                             </div>
                         )

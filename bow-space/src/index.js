@@ -120,8 +120,7 @@ class App extends React.Component {
         }
     }
 
-    //rendering app component
-    render() {
+    componentDidMount() {
         const currentCredentials = this.state.loginCredentials;
         if (currentCredentials.Status !== 'success' && sessionStorage.getItem('Status') === 'success') {
             const newCredentials = {
@@ -132,6 +131,10 @@ class App extends React.Component {
             }
             this.handleLogin(newCredentials);
         }
+    }
+
+    //rendering app component
+    render() {
         const loginAttempt = this.state.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;
         const loginCredentials = this.state.loginCredentials;
