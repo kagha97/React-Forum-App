@@ -27,14 +27,26 @@ class App extends React.Component {
                 waitNeeded: false,
             },
             userList : [],
+            userPosts : {
+                user : '',
+                posts : []
+            },
             newPostProps : {
                 modalShow : false,
             }
         }
     }
 
+    updateUserPost = (user, posts) => {
+        this.setState({
+            userPosts: {
+                user : user,
+                posts : posts
+            }
+        });
+    }
+
     handleModalShow = () => {
-        console.log("------------[model show called]-----------");
         this.setState ({
             newPostProps : {
                 modalShow : !this.state.newPostProps.modalShow,
@@ -115,9 +127,6 @@ class App extends React.Component {
             console.log("same");
         }
     }
-    componentDidMount() {
-        
-    }
 
     //rendering app component
     render() {
@@ -140,7 +149,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} handleWait={this.handleWait} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} setUserList = {this.setUserList} handleModalShow={this.handleModalShow} newPostProps={this.state.newPostProps}/>}/>
+                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} setUserList = {this.setUserList} handleModalShow={this.handleModalShow} newPostProps={this.state.newPostProps} userPosts={this.state.userPosts} UpdateUserPost={this.updateUserPost}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>

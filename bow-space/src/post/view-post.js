@@ -5,40 +5,37 @@ import {GetMyPost} from '../API/fetch'
 import NewPost from "./new-post";
 
 class ViewPost extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {posts: ''}
-    }
     
     componentDidMount() {
-        var userPosts = GetMyPost(this.props.loginCredentials.UserId, this.props.loginCredentials.LoginToken);
-        userPosts.then (result => { console.log("------------[rendering ***** getmypost results]---------------"); console.table(result.MatchingPosts);
-            var mappedPosts = result.MatchingPosts;
-            var posts = mappedPosts.map((eachPostOfUser, index) => 
-            <div id={'post'+index} key={index}>
-                <Post newPost={eachPostOfUser} />
-            </div>
-            );
-            this.setState({posts: posts})
-        });          
+        GetMyPost(this.props.loginCredentials.UserId, this.props.loginCredentials.LoginToken)
+            .then (result => { 
+                var posts = result.MatchingPosts;
+                if (this.props.userPosts.posts.length !== posts.length) {
+                    this.props.UpdateUserPost('', posts);
+                }
+            })
+            .catch(error => console.error(error));        
     }
     
+    
     render() {
-        console.log("------------[renderin view-post component]---------------");
         const loginCredentials = this.props.loginCredentials;
         const userList = this.props.userList;
         const setUserList = this.props.setUserList;
-        var posts = this.state.posts;
-
+        var posts = this.props.userPosts.posts;
         return (
- 
             <div id = "main-panel" className="row align-items-center " >
-
                 <div className="col-md-4">
                     <UserListPanel userList = {userList} setUserList = {setUserList} loginCredentials={loginCredentials} OnLogout={this.props.OnLogout}/>
                 </div>
                 <div className="col-md-8">
-                    {posts}
+                    {
+                        posts.map((post) => 
+                            <div key={post.index}>
+                                <Post newPost={post}/>
+                            </div>
+                        )
+                    }
                 </div>
                 <NewPost loginCredentials={loginCredentials} handleModalShow={this.props.handleModalShow} newPostProps={this.props.newPostProps} />
             </div>

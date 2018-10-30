@@ -99,6 +99,11 @@
     font-size: 50px;
 }
 
+#logout {
+    margin-top: 2em;
+    margin-left: 0.8em;
+}
+
 #main-panel {
   
     overflow: hidden;
@@ -136,12 +141,6 @@
     color: white;
 }
 
-
-#logout {
-    margin-top: 2em;
-    margin-left: 0.8em;
-    /*border: 3px solid #73AD21;*/
-}
 
 
 .modal {
