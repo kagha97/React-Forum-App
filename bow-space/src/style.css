@@ -141,3 +141,34 @@
     color: white;
     box-shadow: 10px 10px 5px rgba(125, 124, 124, 0.214);
 }
+
+a.newPostButton{
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    display:inline-block;
+    padding-bottom: 10px;
+    /* padding:0.35em 1.2em; */
+    width: 90px;
+    border:0.03em solid #FFFFFF;
+    border-radius:10em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:500;
+    font-size: 50px;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    }
+    a.newPostButton:hover{
+    color: white;
+    background-color:purple;
+
+    }
+    @media all and (max-width:40em){
+     a.newPostButton{
+        display:block;
+        margin:0.4em auto;
+    }
+}

@@ -40,6 +40,10 @@ class ViewPost extends Component {
                     {posts}
                 </div>
 
+
+                <a href="#" className="newPostButton">+</a>
+                
+
             </div>
             
         );
