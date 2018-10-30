@@ -7,20 +7,19 @@ class ViewPost extends Component {
     constructor(props) {
         super(props);
     }
-
+    
     render() {
         console.log("------------[renderin view-post component]---------------");
-        const userPosts = this.props.userPosts;
         const loginCredentials = this.props.loginCredentials;
-
+        const userList = this.props.userList;
+        const setUserList = this.props.setUserList;
         return (
-
+ 
             <div id = "main-panel" className="row align-items-center " >
 
                 <div className="col-md-4">
-                    <UserListPanel loginCredentials={loginCredentials} OnLogout={this.props.OnLogout}/>
+                    <UserListPanel userList = {userList} setUserList = {setUserList} loginCredentials={loginCredentials} OnLogout={this.props.OnLogout}/>
                 </div>
-
                 <div className="col-md-8">
                     {userHardcodedPosts.map((eachPostOfUser, index) => 
                     <div id={'post'+index} key={index}>
@@ -28,9 +27,7 @@ class ViewPost extends Component {
                     </div>
                         )}
                 </div>
-
-            </div>
-            
+            </div>  
         );
     }
 }
