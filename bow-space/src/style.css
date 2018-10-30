@@ -269,3 +269,10 @@ a.article, a.article:hover {
     height: 5%;
     width: 7%;
 }
+
+.receipient-button
+{
+    background-color: #47748b;
+    color: white;
+    border-radius: 50px;
+}

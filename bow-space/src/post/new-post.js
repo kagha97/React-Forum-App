@@ -31,7 +31,6 @@ class NewPost extends React.Component {
             .catch(error => console.error(error));
         this.props.handleModalShow();
     }
-
     render() {
         const loginCredentials = this.props.loginCredentials;
         const newPostProps = this.props.newPostProps;
@@ -45,15 +44,7 @@ class NewPost extends React.Component {
             <div class="card-body">
             <div className = 'form-group'>
             <div className = 'row justify-content-md-left'>
-                <label id = 'login-userpass' htmlFor="email" className='mr-sm-2'>Username: </label>
-                <input type="email" className="form-control mr-sm-2"  id="email-input" ref='email'/>
-                </div>
-                </div>
-                <div className = 'form-group'>
-                <div className = 'row justify-content-md-left'>
-                <label id = 'login-userpass' htmlFor = 'title' className = 'mr-sm-2'>Title: </label>
-                <input type = 'title' className = 'form-control mr-sm-2' id='email-input' ref='title'/>
-                </div>
+                <label id = 'login-userpass' htmlFor="email" className='mr-sm-2'>Receipient: <button className='receipient-button'>{this.props.loginCredentials.UserName}</button></label>                </div>
                 </div>
                 <div className = 'form-group'>
                 <div className = 'row justify-content-md-left'>
