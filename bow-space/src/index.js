@@ -11,7 +11,7 @@ import Login from './login/login';
 import ViewPost from "./post/view-post";
 
 class App extends React.Component {
-    //app constructor
+    
     constructor(props) {
         super(props);
         this.state = {

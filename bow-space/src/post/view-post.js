@@ -18,7 +18,6 @@ class ViewPost extends Component {
         GetMyPost(this.props.loginCredentials.UserId, this.props.loginCredentials.LoginToken)
             .then(result => {
                 var posts = result.MatchingPosts;
-                console.log(this.props.userPosts.posts === posts);
                 if (this.props.userPosts.posts.length !== posts.length) {
                     this.props.UpdateUserPost('', posts);
                 }
@@ -47,7 +46,6 @@ class ViewPost extends Component {
                 </div>
                 <NewPost loginCredentials={loginCredentials} handleModalShow={this.props.handleModalShow} newPostProps={this.props.newPostProps} />
             </div>
-            
         );
     }
 }

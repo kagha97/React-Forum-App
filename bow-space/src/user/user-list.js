@@ -1,19 +1,19 @@
 import React from 'react';
 import {GetUserList} from '../API/fetch.js'
 import { Link } from 'react-router-dom'
+
 function UserInfo(props) {
     var nameProfile = props.loginCredential.UserName.charAt(0).toUpperCase(); //
     return (
         <div className="card row align-items-center" style={{width: '23rem', background:'#0077b3'}}>
             <div id = 'profile'> 
-            <div id ='profileText'>{nameProfile}</div>
+                <div id ='profileText'>{nameProfile}</div>
             </div>
-           
             <div className="card-body ">
                 <label id = "firstlastname">{props.loginCredential.UserName}</label>
-                <button href="#" id= "logout" class="btn btn-danger" onClick={props.OnLogout}>Logout</button>
+                <button href="#" id= "logout" className="btn btn-danger" onClick={props.OnLogout}>Logout</button>
             </div>
-          <button type="button" className="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}><Link to = '/'>My Board</Link></button>
+            <button type="button" className="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}><Link to = '/'>My Board</Link></button>
         </div>
     );
 }
@@ -23,37 +23,35 @@ function UserInfo(props) {
 class UserList extends React.Component {
 
     componentDidMount() {
-   //     this.prepareUserList(0, '');
-     this.prepareUserList();
+        this.prepareUserList();
     }
 
     prepareUserList = () => {
         GetUserList(this.props.loginCredential.LoginToken,0,'')
-         .then(response =>  {return response})
-         .then(data => {
-            var mappedData = data.MatchingUsers;
-            this.props.setList(mappedData)
-        })
-         .catch(error => {
-            console.error(error);
-        })
+            .then(response =>  {return response})
+            .then(data => {
+                var mappedData = data.MatchingUsers;
+                this.props.setList(mappedData)
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
    
     render () {
       var users = this.props.userList;
      return (
         <div>     
-            <label id='user-list-label'>Members</label>
-            
-      <form>
-        <div className="form-group">
-        </div>
-      </form>
+            <label id='user-list-label'>Members</label>  
+            <form>
+                <div className="form-group">
+                </div>
+            </form>
             <div className="card" style={{width: '18rem', background: '#0099ff'}}></div> 
-            <ul  id = 'user-list' className="list-group list-group-flush align-items-center " style = {{maxHeight: '25em'}}>
+            <ul  id = 'user-list' className="list-group list-group-flush align-items-center" style = {{maxHeight: '25em'}}>
              {
                  users.map((user) =><li key={user.index}>
-                 <Link to = {'/userid='+user.UserId}><button class="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></Link>
+                 <Link to = {'/userid='+user.UserId}><button className="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></Link>
                  </li> )
              }
             </ul>
