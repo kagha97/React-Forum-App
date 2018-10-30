@@ -89,9 +89,6 @@ class App extends React.Component {
                     }
             });
         }
-        console.log("---------[handleLogin]----------");
-        console.dir(this.state);
-        console.table(sessionStorage);
     }
 
     // logout user
@@ -118,13 +115,8 @@ class App extends React.Component {
 
     // set user list
     setUserList = (userList) => {
-        console.log("--------[setuserlist function]--------");
-        if (userList.length != this.state.userList.length) {
+        if (userList.length !== this.state.userList.length) {
             this.setState({userList : userList});
-            console.log("changed");
-        }
-        else {
-            console.log("same");
         }
     }
 

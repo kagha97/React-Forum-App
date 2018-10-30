@@ -13,8 +13,7 @@ const GetUserAuth = (loginAttempt) => {
 			});
 }
 
-function GetUserList(token, id) {
-    console.log('my fetch');
+const GetUserList = (token, id) => {
     var url = 'http://api.bowspace.ca/rest/users?userid=' + id +'&keywords=';
     const otherPrams = {
         method: 'GET',
@@ -54,7 +53,6 @@ const SendPostMessege = (loginCredentials, messege) => {
 		RecipientId : messege.ReceipientId,
 		PostHtml: messege.PostHtml
 	}; 
-	console.log(post);
 	const headers = new Headers({
 		'Content-Type': 'application/x-www-form-urlencoded',
 		'Authorization': 'Bearer ' + loginCredentials.LoginToken

@@ -22,7 +22,6 @@ const Modal = ({ handleClose, show, children }) => {
 class NewPost extends React.Component {
 
     handleSubmit = () => {
-        console.error("---------------[handlesubmit]------------------");
         const message = {
             ReceipientId : this.props.loginCredentials.UserId,
             PostHtml : this.refs.body.value,
@@ -32,8 +31,8 @@ class NewPost extends React.Component {
             .catch(error => console.error(error));
         this.props.handleModalShow();
     }
+    
     render() {
-        const loginCredentials = this.props.loginCredentials;
         const newPostProps = this.props.newPostProps;
         const modalShow = newPostProps.modalShow;
       return (

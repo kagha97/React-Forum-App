@@ -3,7 +3,6 @@ import {GetUserList} from '../API/fetch.js'
 import { Link } from 'react-router-dom'
 function UserInfo(props) {
     var nameProfile = props.loginCredential.UserName.charAt(0).toUpperCase(); //
-    console.log(nameProfile)
     return (
         <div className="card row align-items-center" style={{width: '23rem', background:'#0077b3'}}>
             <div id = 'profile'> 
@@ -33,10 +32,7 @@ class UserList extends React.Component {
          .then(response =>  {return response})
          .then(data => {
             var mappedData = data.MatchingUsers;
-            console.log('mappedData:')
-            console.log(mappedData)
-         //   mappedData = mappedData.map((users, index) => <li key={index}><button key={index} class="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{users.UserName}</button></li> );
-           this.props.setList(mappedData)
+            this.props.setList(mappedData)
         })
          .catch(error => {
             console.error(error);
@@ -45,7 +41,6 @@ class UserList extends React.Component {
    
     render () {
       var users = this.props.userList;
-      console.table(users);
      return (
         <div>     
             <label id='user-list-label'>Members</label>

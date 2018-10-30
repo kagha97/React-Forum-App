@@ -7,16 +7,24 @@ import NewPost from "./new-post";
 class ViewPost extends Component {
     
     componentDidMount() {
+        setInterval(this.checkNewPost, 1000);
+    }
+    
+    componentWillUnmount() {
+        clearInterval();
+    }
+
+    checkNewPost = () => {
         GetMyPost(this.props.loginCredentials.UserId, this.props.loginCredentials.LoginToken)
-            .then (result => { 
+            .then(result => {
                 var posts = result.MatchingPosts;
+                console.log(this.props.userPosts.posts === posts);
                 if (this.props.userPosts.posts.length !== posts.length) {
                     this.props.UpdateUserPost('', posts);
                 }
             })
-            .catch(error => console.error(error));        
+            .catch(error => console.error(error));
     }
-    
     
     render() {
         const loginCredentials = this.props.loginCredentials;
