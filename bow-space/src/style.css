@@ -95,6 +95,7 @@
 #main-panel {
   
     overflow: hidden;
+    background-image: linear-gradient(black, #365c82, black);
 }
 
 #user-list-label {
@@ -218,3 +219,53 @@ a.article, a.article:hover {
     SIDEBAR STYLE ENDS
 ----------------------------------------------------- */
 
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .modal-main {
+    position:fixed;
+    background: white;
+    width: 50%;
+    height: auto;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+  
+  .display-block {
+    display: block;
+  }
+  
+  .display-none {
+    display: none;
+  }
+
+
+
+/* css for new post*/
+
+#new-post {
+    width:50%;
+    margin-top: 6%;
+    margin-left: 26%;
+}
+
+#post-title
+{
+    color:white;
+    font-size: 17;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+#close-post
+{
+    margin-left: 63%;
+    height: 5%;
+    width: 7%;
+}

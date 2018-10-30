@@ -31,6 +31,7 @@ class App extends React.Component {
                 loginStatus : false,
                 waitNeeded: false,
             },
+            userList : [],
             userPosts : userHardcodedPosts,
         }
     }
@@ -55,6 +56,11 @@ class App extends React.Component {
                         waitNeeded : false,
                     }
             });
+            //set local session
+            sessionStorage.setItem("Status", newCredentials.Status);
+            sessionStorage.setItem("UserId", newCredentials.UserId);
+            sessionStorage.setItem("LoginToken", newCredentials.LoginToken);
+            sessionStorage.setItem("UserName", newCredentials.UserName);
         }
         else {
             this.setState({
@@ -65,6 +71,9 @@ class App extends React.Component {
                     }
             });
         }
+        console.log("---------[handleLogin]----------");
+        console.dir(this.state);
+        console.table(sessionStorage);
     }
 
     // logout user
@@ -83,21 +92,50 @@ class App extends React.Component {
                 }
             }
         );
+        sessionStorage.setItem("Status", '');
+        sessionStorage.setItem("UserId", '');
+        sessionStorage.setItem("LoginToken", '');
+        sessionStorage.setItem("UserName", '');
     }
 
+    // set user list
+    setUserList = (userList) => {
+        console.log("--------[setuserlist function]--------");
+        if (userList.length != this.state.userList.length) {
+            this.setState({userList : userList});
+            console.log("changed");
+        }
+        else {
+            console.log("same");
+        }
+    }
+    componentDidMount() {
+        
+    }
 
     //rendering app component
     render() {
+        const currentCredentials = this.state.loginCredentials;
+        if (currentCredentials.Status !== 'success' && sessionStorage.getItem('Status') === 'success') {
+            const newCredentials = {
+                Status: sessionStorage.getItem("Status"),
+                UserId: sessionStorage.getItem("UserId"),
+                LoginToken: sessionStorage.getItem("LoginToken"),
+                UserName: sessionStorage.getItem("UserName"),
+            }
+            this.handleLogin(newCredentials);
+        }
         const loginAttempt = this.state.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;
         const loginCredentials = this.state.loginCredentials;
+        const userList = this.state.userList;
         return (
             <BrowserRouter>
                 <Switch>
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} handleWait={this.handleWait} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    {/* <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout}/>}/> */}
-                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userPosts={userHardcodedPosts}/>}/>
+                    {/* <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} OnGetUserList={this.updateUserList} userPosts={userHardcodedPosts}/>}/> */}
+                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} setUserList = {this.setUserList} userPosts={userHardcodedPosts}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>
