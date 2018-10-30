@@ -22,33 +22,40 @@ const Modal = ({ handleClose, show, children }) => {
 class NewPost extends React.Component {
 
     handleSubmit = () => {
+        const newPostProps = this.props.newPostProps;
+        const loginCredentials = newPostProps.loginCredentials;
+        const handleModalShow = newPostProps.handleModalShow;
         const message = {
             ReceipientId : this.props.loginCredentials.UserId,
             PostHtml : this.refs.body.value,
         }
-        SendPostMessege(this.props.loginCredentials , message)
+        SendPostMessege(loginCredentials , message)
             .then(result => console.log(result))
             .catch(error => console.error(error));
-        this.props.handleModalShow();
+        handleModalShow();
     }
     
     render() {
         const newPostProps = this.props.newPostProps;
-        const modalShow = newPostProps.modalShow;
+        const loginCredentials = newPostProps.loginCredentials;
+        const newPostData = newPostProps.newPostData;
+        const modalShow = newPostData.modalShow;
+        const handleModalShow = newPostProps.handleModalShow;
         return (
             <main>
-                <Modal show={modalShow} handleClose = {() => this.props.handleModalShow()}>
+                <Modal>
                     <div className="card-body">
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-left'>
-                                <label id = 'login-userpass' htmlFor="email" className='mr-sm-2'>Receipient: <button className='receipient-button'>{this.props.loginCredentials.UserName}</button></label>                </div>
+                                <label id = 'login-userpass' htmlFor="email" className='mr-sm-2'>Receipient: <button className='receipient-button'>{loginCredentials.UserName}</button></label>
                             </div>
-                            <div className = 'form-group'>
-                                <div className = 'row justify-content-md-left'>
-                                    <label id = 'login-userpass' htmlFor = 'body' className = 'mr-sm-2'>Body: </label>
-                                    <textarea type = 'body' className = 'form-control mr-sm-2' id ='email-input' ref='body'  rows='7'/>
-                                </div>
+                        </div>
+                        <div className = 'form-group'>
+                            <div className = 'row justify-content-md-left'>
+                                <label id = 'login-userpass' htmlFor = 'body' className = 'mr-sm-2'>Body: </label>
+                                <textarea type = 'body' className = 'form-control mr-sm-2' id ='email-input' ref='body' rows='7'/>
                             </div>
+                        </div>
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-center mr-sm-2' >
                                 <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={this.handleSubmit}>Send</button>
@@ -56,7 +63,7 @@ class NewPost extends React.Component {
                         </div>
                     </div> 
                 </Modal>
-                <div id='new-post-button' className="newPostButton" onClick={() => this.props.handleModalShow()}>+</div>
+                <div id='new-post-button' className="newPostButton" onClick={() => handleModalShow()}>+</div>
             </main>
       );
     }

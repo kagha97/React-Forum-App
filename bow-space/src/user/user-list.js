@@ -62,11 +62,16 @@ class UserList extends React.Component {
 
 class UserListPanel extends React.Component {
 
-    render() {       
+    render() {
+        const userListPanelProps = this.props.userListPanelProps;
+        const loginCredentials = userListPanelProps.loginCredentials;
+        const OnLogout = userListPanelProps.OnLogout;
+        const userList = userListPanelProps.userList;
+        const setUserList = userListPanelProps.setUserList;
         return (
             <div id = "main-panel" className="card row align-items-center" style={{minHeight: '100vh',width: '23rem', background: '#333333'}}>
-                <UserInfo  OnLogout={this.props.OnLogout} loginCredential={this.props.loginCredentials}/>
-                <UserList userList = {this.props.userList} setList = {this.props.setUserList} loginCredential={this.props.loginCredentials}/>
+                <UserInfo loginCredential={loginCredentials} OnLogout={OnLogout} />
+                <UserList loginCredential={loginCredentials} userList = {userList} setList = {setUserList}/>
                 <img id = "bottom-logo" style = {{objectFit: 'contain'}} className = "mt-auto" src={ require('../images/bowspace logo.png')} alt='logo'/>
             </div>
         );
