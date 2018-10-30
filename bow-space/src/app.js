@@ -116,10 +116,11 @@ class App extends React.Component {
                 }
             }
         );
-        sessionStorage.setItem("Status", '');
-        sessionStorage.setItem("UserId", '');
-        sessionStorage.setItem("LoginToken", '');
-        sessionStorage.setItem("UserName", '');
+        // set local session variables to empty
+        sessionStorage.removeItem("Status");
+        sessionStorage.removeItem("UserId");
+        sessionStorage.removeItem("LoginToken");
+        sessionStorage.removeItem("UserName");
     }
 
     // set user list
@@ -131,20 +132,24 @@ class App extends React.Component {
 
     //rendering app component
     render() {
+        //props for login page
         const loginAttempt = this.state.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;
         const loginCredentials = this.state.loginCredentials;
+        //props for view post component
         const viewPostProps = {
             loginCredentials,
             userPosts: this.state.userPosts,
             UpdateUserPost : this.updateUserPost,
         };
+        //props for userlist component
         const userListPanelProps = {
             loginCredentials,
             userList : this.state.userList,
             setUserList : this.setUserList,
             OnLogout : this.handleLogout,
         };
+        //props for newpost component
         const newPostProps = {
             loginCredentials,
             newPostData: this.state.newPostData,
