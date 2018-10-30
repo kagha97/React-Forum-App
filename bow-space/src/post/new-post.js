@@ -43,7 +43,7 @@ class NewPost extends React.Component {
         const handleModalShow = newPostProps.handleModalShow;
         return (
             <main>
-                <Modal>
+                <Modal show={modalShow} handleClose = {() => handleModalShow()}>
                     <div className="card-body">
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-left'>

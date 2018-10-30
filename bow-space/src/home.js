@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import UserListPanel from "./user/user-list";
 import NewPost from "./post/new-post";
 import ViewPost from './post/view-post';

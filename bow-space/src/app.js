@@ -42,7 +42,7 @@ class App extends React.Component {
 
     handleModalShow = () => {
         this.setState ({
-            newPostProps : {
+            newPostData: {
                 modalShow : !this.state.newPostData.modalShow,
             }
         })
