@@ -95,6 +95,7 @@
 #main-panel {
   
     overflow: hidden;
+    background-image: linear-gradient(black, #365c82, black);
 }
 
 #user-list-label {

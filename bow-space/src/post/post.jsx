@@ -10,8 +10,8 @@ class Post extends Component {
         <div>
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6">
-                        <div className="card">
+                    <div className="col-md-8">
+                        <div className="card post">
                             <div className="card-header">
                                 <h4><strong>{myTitle}</strong></h4> 
                             </div>
@@ -19,7 +19,7 @@ class Post extends Component {
                                 {myBody}
                             </div>
                             <div className="card-footer">
-                                <strong>by {myAuthor}</strong> - <span className="text-muted">{myDate}</span>
+                                <strong>by {myAuthor}</strong> - <span>{myDate}</span>
                             </div>
                         </div>
                     </div>
