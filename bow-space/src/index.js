@@ -13,7 +13,7 @@ import UserListPanel from "./user/user-list";
 
 //importing components from view-post
 import ViewPost from "./post/view-post";
-import userHardcodedPosts from './post/hardcoded-posts'
+
 
 class App extends React.Component {
     //app constructor
@@ -31,8 +31,7 @@ class App extends React.Component {
                 loginStatus : false,
                 waitNeeded: false,
             },
-            userList : [],
-            userPosts : userHardcodedPosts,
+            userList : []
         }
     }
 
@@ -135,7 +134,7 @@ class App extends React.Component {
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} handleWait={this.handleWait} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
                     {/* <Route exact path='/' component={(...props) => <UserListPanel  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} OnGetUserList={this.updateUserList} userPosts={userHardcodedPosts}/>}/> */}
-                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} setUserList = {this.setUserList} userPosts={userHardcodedPosts}/>}/>
+                    <Route exact path='/' component={(...props) => <ViewPost  {...props} loginCredentials={loginCredentials} OnLogout={this.handleLogout} userList={userList} setUserList = {this.setUserList}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>
