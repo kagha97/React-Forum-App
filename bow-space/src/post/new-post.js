@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 /*ref*/
 const Modal = ({ handleClose, show, children }) => {
-const showHideClassName = show ? "modal display-block" : "modal display-none";
-  
+    const showHideClassName = show ? "modal display-block" : "modal display-none";
     return (
       <div className={showHideClassName}>
         <div id='new-post'>
@@ -14,27 +13,25 @@ const showHideClassName = show ? "modal display-block" : "modal display-none";
           {children}
           </div>
           </div>
-          </div>
+        </div>
       
     );
-  };
+};
 class NewPost extends React.Component {
-    state = { show: false };
-  
-    showModal = () => {
-      this.setState({ show: true });
-    };
-  
-    hideModal = () => {
-      this.setState({ show: false });
-    };
-  
+
+    componentDidMount() {
+        
+    }
+
     render() {
+        const loginCredentials = this.props.loginCredentials;
+        const newPostProps = this.props.newPostProps;
+        const modalShow = newPostProps.modalShow;
       return (
         <main>
           <h1>React Modal</h1>
 
-          <Modal show={this.state.show} handleClose={this.hideModal}>
+          <Modal show={modalShow} handleClose = {() => this.props.handleModalShow()}>
           
             <div class="card-body">
             <div className = 'form-group'>
@@ -63,16 +60,12 @@ class NewPost extends React.Component {
             </div>
             
           </Modal>
-          <button type="button" onClick={this.showModal}>
+          <button type="button" onClick={() => this.props.handleModalShow()}>
             open
           </button>
         </main>
       );
     }
 }
-  
- const container = document.createElement("div");
-  document.body.appendChild(container);
-  ReactDOM.render(<NewPost />, container);
 
 export default NewPost;
