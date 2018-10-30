@@ -1,14 +1,20 @@
 import React from 'react';
 import {GetUserList} from '../API/fetch.js'
+import { Link } from 'react-router-dom'
 function UserInfo(props) {
+    var nameProfile = props.loginCredential.UserName.charAt(0).toUpperCase(); //
+    console.log(nameProfile)
     return (
         <div className="card row align-items-center" style={{width: '23rem', background:'#0077b3'}}>
-            <img id = "profile" className="card-img-top" src= { require('../images/avatar.png')} alt="User Profile"/>
+            <div id = 'profile'> 
+            <div id ='profileText'>{nameProfile}</div>
+            </div>
+           
             <div className="card-body ">
                 <label id = "firstlastname">{props.loginCredential.UserName}</label>
                 <button href="#" id= "logout" class="btn btn-danger" onClick={props.OnLogout}>Logout</button>
             </div>
-            <button type="button" className="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}>My Board</button>
+          <button type="button" className="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}><Link to = '/'>My Board</Link></button>
         </div>
     );
 }
@@ -42,11 +48,18 @@ class UserList extends React.Component {
       console.table(users);
      return (
         <div>     
-            <label id='user-list-label'>User List</label>
+            <label id='user-list-label'>Members</label>
+            
+      <form>
+        <div className="form-group">
+        </div>
+      </form>
             <div className="card" style={{width: '18rem', background: '#0099ff'}}></div> 
             <ul  id = 'user-list' className="list-group list-group-flush align-items-center " style = {{maxHeight: '25em'}}>
              {
-                 users.map((user) => <li key={user.index}><button class="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></li> )
+                 users.map((user) =><li key={user.index}>
+                 <Link to = {'/userid='+user.UserId}><button class="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></Link>
+                 </li> )
              }
             </ul>
         </div>

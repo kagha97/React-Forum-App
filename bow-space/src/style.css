@@ -86,11 +86,18 @@
 
 /*user info panel*/
 #profile {
-    margin-top: 3em;
+    background-color: #10355f;
     border-radius: 80%;
-    width: 4em;
-    height: 4em;
+    width: 5em;
+    height: 5em;
+    margin-top: 4px;
 } 
+
+#profileText {
+    margin-left: 1.6rem;
+    color: white;
+    font-size: 50px;
+}
 
 #main-panel {
   
