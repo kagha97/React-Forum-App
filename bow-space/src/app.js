@@ -141,6 +141,7 @@ class App extends React.Component {
             loginCredentials,
             userPosts: this.state.userPosts,
             UpdateUserPost : this.updateUserPost,
+            userList: this.state.userList,
         };
         //props for userlist component
         const userListPanelProps = {

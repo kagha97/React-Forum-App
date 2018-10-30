@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class Post extends Component {
     render() { 
-        const myAuthor = this.props.newPost.SenderId;
+        const myAuthor = this.props.sender;
         const myBody = this.props.newPost.PostHtml;
         const myPostId = this.props.newPost.PostId;
         const myDate = this.props.newPost.ValidFromUtc;

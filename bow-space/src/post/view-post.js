@@ -29,6 +29,15 @@ class ViewPost extends Component {
             })
             .catch(error => console.error(error));
     }
+
+    getUserName = id => {
+        const userList = this.props.viewPostProps.userList;
+        const user = userList.find((user) => user.UserId === id);
+        if (user) {
+            return user.UserName;
+        }
+        return '';
+    }
     
     render() {
         const viewPostProps = this.props.viewPostProps;
@@ -39,7 +48,7 @@ class ViewPost extends Component {
                 {
                     posts.map((post) => 
                         <div key={post.PostId}>
-                            <Post newPost={post}/>
+                            <Post newPost={post} sender={this.getUserName(post.SenderId)}/>
                         </div>
                     )
                 }
