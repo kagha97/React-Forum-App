@@ -8,22 +8,37 @@ class App extends React.Component {
     
     constructor(props) {
         super(props);
+
+        // retriving login credentials from session
+        var loginCredentials = {
+            Status: '',
+            UserId: '',
+            LoginToken: '',
+            UserName: '',
+        }
+        var loginAttempt = {
+            message: '',
+            loginStatus: false,
+            waitNeeded: false,
+        }
+        if (sessionStorage.getItem('Status') === 'success') {
+            loginCredentials = {
+                Status: sessionStorage.getItem("Status"),
+                UserId: sessionStorage.getItem("UserId"),
+                LoginToken: sessionStorage.getItem("LoginToken"),
+                UserName: sessionStorage.getItem("UserName"),
+            }
+            loginAttempt.loginStatus = true;
+        }
+
+        // app state
         this.state = {
-            loginCredentials : {
-                Status : '',
-                UserId : '',
-                LoginToken : '',
-                UserName : '',
-            },
-            loginAttempt : {
-                message : '',
-                loginStatus : false,
-                waitNeeded: false,
-            },
+            loginCredentials,
+            loginAttempt,
             userList : [],
             userPosts : {
                 user : '',
-                posts : []
+                posts : [],
             },
             newPostData : {
                 modalShow : false,
@@ -111,19 +126,6 @@ class App extends React.Component {
     setUserList = (userList) => {
         if (userList.length !== this.state.userList.length) {
             this.setState({userList : userList});
-        }
-    }
-
-    componentDidMount() {
-        const currentCredentials = this.state.loginCredentials;
-        if (currentCredentials.Status !== 'success' && sessionStorage.getItem('Status') === 'success') {
-            const newCredentials = {
-                Status: sessionStorage.getItem("Status"),
-                UserId: sessionStorage.getItem("UserId"),
-                LoginToken: sessionStorage.getItem("LoginToken"),
-                UserName: sessionStorage.getItem("UserName"),
-            }
-            this.handleLogin(newCredentials);
         }
     }
 

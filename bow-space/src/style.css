@@ -240,3 +240,11 @@ div.newPostButton {
     color: white;
     border-radius: 50px;
 }
+
+/** Error page */
+
+#error-page-background {
+    height: 100vh;
+    color: white;
+    background-image: linear-gradient(black, #365c82, black);
+}

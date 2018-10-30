@@ -26,7 +26,7 @@ class NewPost extends React.Component {
         const loginCredentials = newPostProps.loginCredentials;
         const handleModalShow = newPostProps.handleModalShow;
         const message = {
-            ReceipientId : this.props.loginCredentials.UserId,
+            ReceipientId : loginCredentials.UserId,
             PostHtml : this.refs.body.value,
         }
         SendPostMessege(loginCredentials , message)

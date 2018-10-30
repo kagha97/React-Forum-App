@@ -5,7 +5,9 @@ import {GetMyPost} from '../API/fetch'
 class ViewPost extends Component {
     
     componentDidMount() {
-        setInterval(this.checkNewPost, 1000);
+        // setInterval(this.checkNewPost, 1000);
+        setTimeout(() => this.checkNewPost(), 1000);
+        // this.checkNewPost();
     }
     
     componentWillUnmount() {
