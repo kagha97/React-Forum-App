@@ -32,7 +32,6 @@ class UserList extends React.Component {
 
     prepareUserList = () => {
         GetUserList(this.props.loginCredential.LoginToken,0,'')
-            .then(response =>  {return response})
             .then(data => {
                 var mappedData = data.MatchingUsers;
                 this.props.setList(mappedData)
