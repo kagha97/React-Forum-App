@@ -21,16 +21,15 @@ class ViewPost extends Component {
         const posts = userPosts.posts;
         const UpdateUserPost = viewPostProps.UpdateUserPost;
         var userId = userPosts.UserSpaceID;
-
         const updateUserSpaceID = viewPostProps.updateUserSpaceID;
         const paramSpaceId = this.props.paramSpaceId;
         if (userId==="") {
             userId = loginCredentials.UserId;
         }
-        if (paramSpaceId) {
+        if (paramSpaceId && paramSpaceId!==userId) {
             userId = paramSpaceId;
+            updateUserSpaceID(userId);
         }
-        updateUserSpaceID(userId);
         GetMyPost(userId, loginCredentials.LoginToken)
             .then(result => {
                 var fetchPosts = result.MatchingPosts;
@@ -52,7 +51,8 @@ class ViewPost extends Component {
     
     render() {
         const viewPostProps = this.props.viewPostProps;
-        const posts = viewPostProps.userPosts.posts;
+        const userPosts = viewPostProps.userPosts;
+        const posts = userPosts.posts;
         return (
             <div className="col-md-8">
                 {

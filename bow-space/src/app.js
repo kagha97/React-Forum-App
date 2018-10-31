@@ -107,6 +107,10 @@ class App extends React.Component {
         }
     }
 
+    switchSpace = (id) => {
+        this.updateUserSpaceID(id);
+    }
+
     // logout user
     handleLogout = () => {
         this.setState(
@@ -157,6 +161,7 @@ class App extends React.Component {
             userList : this.state.userList,
             setUserList : this.setUserList,
             OnLogout : this.handleLogout,
+            OnSwitchSpace : this.switchSpace,
         };
         //props for newpost component
         const newPostProps = {
