@@ -16,14 +16,14 @@ class Post extends Component {
         return (
             <div id={'post'+myPostId}>
     
-                <div className="col-md-8 card post">
+                <div className="card post">
                     <div className="row card-header">
     
                         <div className="col-md-1">
                         B
                         </div>
     
-                        <div className="col-md-11">
+                        <div className="col-md">
                         <strong>{myAuthor}</strong>
                         <br/>
                         <span>{dateComponent} at {timeComponent}</span>
