@@ -250,8 +250,8 @@ body, HTML {
 
 div.newPostButton {
     position: fixed;
-    top: 40px;
-    right: 40px;
+    bottom: 20px;
+    right: 0px;
     display:inline-block;
     padding-bottom: 10px;
     /* padding:0.35em 1.2em; */
@@ -267,8 +267,8 @@ div.newPostButton {
     text-align:center;
     transition: all 0.2s;
     background-color: rgb(161, 6, 161);
-    margin-top: 45rem;
-    margin-right:20rem;
+    /* margin-top: 5rem; */
+    margin-right:5rem;
     }
 
     div.newPostButton:hover{

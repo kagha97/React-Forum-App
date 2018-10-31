@@ -18,8 +18,8 @@ class Home extends React.Component {
                     <ViewPost viewPostProps={viewPostProps}/>
                 </div>
                 <NewPost newPostProps={newPostProps}/>
-                <div className = 'col-md-1'>
-                </div>
+                {/* <div className = 'col-md-1'>
+                </div> */}
             </div>
             </div>
         );

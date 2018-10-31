@@ -39,7 +39,9 @@ class LoginForm extends React.Component {
                         </div>
                       
                         <div className = 'row justify-content-md-center'>
-                            <label  htmlFor = 'login status' className = 'mr-sm-2' id='login-status-message'>{ waitNeeded ? <Wait/> : message }</label>
+                            <div className = 'col-md-12 text-center'>
+                                <label  htmlFor = 'login status' className = 'mr-sm-2' id='login-status-message'>{ waitNeeded ? <Wait/> : message }</label>
+                            </div>
                         </div>
                        
                         <div className = 'justify-content-md-center' >
