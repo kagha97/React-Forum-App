@@ -51,8 +51,8 @@ class NewPost extends React.Component {
         const newPostData = newPostProps.newPostData;
         const modalShow = newPostData.modalShow;
         const handleModalShow = newPostProps.handleModalShow;
-        const paramSpaceId = this.props.paramSpaceId;
-        const receipient = this.getUserName(paramSpaceId);
+        const receipientId = newPostProps.receipientId;
+        const receipient = this.getUserName(receipientId);
         return (
             <main>
                 <Modal show={modalShow} handleClose = {() => handleModalShow()}>

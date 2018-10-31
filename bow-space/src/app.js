@@ -48,6 +48,9 @@ class App extends React.Component {
 
     updateUserSpaceID = (id) => {
         let userPosts = {...this.state.userPosts};
+        console.log("_________________________________________");
+        console.log(userPosts);
+        console.log(id);
         userPosts.UserSpaceID = id;
         this.setState({
             userPosts,
@@ -109,6 +112,8 @@ class App extends React.Component {
 
     switchSpace = (id) => {
         this.updateUserSpaceID(id);
+        console.log("______________[switchspace]_________");
+        console.log(this.state.userPosts);
     }
 
     // logout user
@@ -169,6 +174,7 @@ class App extends React.Component {
             newPostData: this.state.newPostData,
             handleModalShow: this.handleModalShow,
             userList : this.state.userList,
+            receipientId: this.state.userPosts.UserSpaceID,
         };
         return (
             <BrowserRouter>

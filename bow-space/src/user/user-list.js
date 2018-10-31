@@ -14,7 +14,7 @@ function UserInfo(props) {
                 <label id = "firstlastname">{props.loginCredential.UserName}</label>
                 <button href="#" id= "logout" className="btn btn-danger" onClick={props.OnLogout}><i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
-            <Link to = {'/'+props.loginCredential.UserId}><button onClick = {() => props.OnSwitchSpace(props.loginCredential.UserId)}  id='myboard' className="btn btn-primary btn-lg btn-block" ><i class="fas fa-home"></i>My Board</button></Link>
+            <button onClick = {() => props.OnSwitchSpace(props.loginCredential.UserId)}  id='myboard' className="btn btn-primary btn-lg btn-block" ><i class="fas fa-home"></i>My Board</button>
         </div>
     );
 }
@@ -58,7 +58,7 @@ class UserList extends React.Component {
                 <div id = 'user-list' className="list-group list-group-flush align-items-center" style = {{maxHeight: '25em'}}>
                 {  (users.length !== 0)?
                     users.map((user) =><li key={user.UserId}>
-                            <Link to = {'/'+user.UserId}><button onClick = {() => this.props.OnSwitchSpace(this.props.loginCredential.UserId)}  id = 'user-select' className=" mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></Link>
+                            <button onClick = {() => this.props.OnSwitchSpace(user.UserId)}  id = 'user-select' className=" mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button>
                         </li> 
                     ) 
                     : <Wait/>

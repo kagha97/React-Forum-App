@@ -6,7 +6,6 @@ import ViewPost from './post/view-post';
 class Home extends React.Component {
 
     render() {        
-        const paramSpaceId = this.props[0].match.params.UserId;
         const viewPostProps = this.props.viewPostProps;
         const userListPanelProps = this.props.userListPanelProps;
         const newPostProps = this.props.newPostProps;
@@ -17,9 +16,9 @@ class Home extends React.Component {
                         <UserListPanel userListPanelProps={userListPanelProps}/>
                     </div>
                     <div className="add col-md-8">
-                        <ViewPost viewPostProps={viewPostProps} paramSpaceId={paramSpaceId}/>
+                        <ViewPost viewPostProps={viewPostProps}/>
                     </div>
-                    <NewPost newPostProps={newPostProps} paramSpaceId={paramSpaceId}/>
+                    <NewPost newPostProps={newPostProps}/>
                 </div>
             </div>
         );
