@@ -21,12 +21,12 @@ const Modal = ({ handleClose, show, children }) => {
 
 class NewPost extends React.Component {
 
-    handleSubmit = () => {
+    handleSubmit = (receipient) => {
         const newPostProps = this.props.newPostProps;
         const loginCredentials = newPostProps.loginCredentials;
         const handleModalShow = newPostProps.handleModalShow;
         const message = {
-            ReceipientId : loginCredentials.UserId,
+            ReceipientId: receipient.UserId,
             PostHtml : this.refs.body.value,
         }
         SendPostMessege(loginCredentials , message)
@@ -34,20 +34,32 @@ class NewPost extends React.Component {
             .catch(error => console.error(error));
         handleModalShow();
     }
+
+    getUserName = userId => {
+        const userList = this.props.newPostProps.userList;
+        var receipient = this.props.newPostProps.loginCredentials;
+        userList.forEach(user => {
+            if (userId == user.UserId) {
+                receipient = user;
+            }
+        });
+        return receipient;
+    }
     
     render() {
         const newPostProps = this.props.newPostProps;
-        const loginCredentials = newPostProps.loginCredentials;
         const newPostData = newPostProps.newPostData;
         const modalShow = newPostData.modalShow;
         const handleModalShow = newPostProps.handleModalShow;
+        const paramSpaceId = this.props.paramSpaceId;
+        const receipient = this.getUserName(paramSpaceId);
         return (
             <main>
                 <Modal show={modalShow} handleClose = {() => handleModalShow()}>
                     <div className="card-body">
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-left'>
-                                <label id = 'login-userpass' htmlFor="email" className='mr-sm-2'>Receipient: <button className='receipient-button'>{loginCredentials.UserName}</button></label>
+                                <label id = 'login-userpass' htmlFor="email" className='mr-sm-2'>Receipient: <button className='receipient-button'>{receipient.UserName}</button></label>
                             </div>
                         </div>
                         <div className = 'form-group'>
@@ -58,7 +70,7 @@ class NewPost extends React.Component {
                         </div>
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-center mr-sm-2' >
-                                <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={this.handleSubmit}>Send</button>
+                                <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={() => this.handleSubmit(receipient)}>Send</button>
                             </div>
                         </div>
                     </div> 

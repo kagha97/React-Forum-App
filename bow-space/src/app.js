@@ -37,7 +37,7 @@ class App extends React.Component {
             loginAttempt,
             userList : [],
             userPosts : {
-                user : '',
+                UserSpaceID : '',
                 posts : [],
             },
             newPostData : {
@@ -46,12 +46,19 @@ class App extends React.Component {
         }
     }
 
-    updateUserPost = (user, posts) => {
+    updateUserSpaceID = (id) => {
+        let userPosts = {...this.state.userPosts};
+        userPosts.UserSpaceID = id;
         this.setState({
-            userPosts: {
-                user : user,
-                posts : posts
-            }
+            userPosts,
+        });
+    }
+
+    updateUserPost = (posts) => {
+        let userPosts = {...this.state.userPosts};
+        userPosts.posts = posts;
+        this.setState({
+            userPosts,
         });
     }
 
@@ -140,6 +147,7 @@ class App extends React.Component {
         const viewPostProps = {
             loginCredentials,
             userPosts: this.state.userPosts,
+            updateUserSpaceID : this.updateUserSpaceID,
             UpdateUserPost : this.updateUserPost,
             userList: this.state.userList,
         };
@@ -155,6 +163,7 @@ class App extends React.Component {
             loginCredentials,
             newPostData: this.state.newPostData,
             handleModalShow: this.handleModalShow,
+            userList : this.state.userList,
         };
         return (
             <BrowserRouter>

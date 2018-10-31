@@ -4,20 +4,21 @@ import NewPost from "./post/new-post";
 import ViewPost from './post/view-post';
 
 class Home extends React.Component {
-    render() {
+
+    render() {        
+        const paramSpaceId = this.props[0].match.params.UserId;
         const viewPostProps = this.props.viewPostProps;
         const userListPanelProps = this.props.userListPanelProps;
         const newPostProps = this.props.newPostProps;
-        const userSpaceId = this.props[0].match.params.UserId;
         return(
             <div id="main-panel" className="row align-items-center">
                 <div className = "col-md-4">
                     <UserListPanel userListPanelProps={userListPanelProps}/>
                 </div>
                 <div className="col-md-8">
-                    <ViewPost viewPostProps={viewPostProps} userSpaceId={userSpaceId}/>
+                    <ViewPost viewPostProps={viewPostProps} paramSpaceId={paramSpaceId}/>
                 </div>
-                <NewPost newPostProps={newPostProps}/>
+                <NewPost newPostProps={newPostProps} paramSpaceId={paramSpaceId}/>
             </div>
         );
     }

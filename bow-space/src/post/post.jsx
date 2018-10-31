@@ -23,7 +23,7 @@ class Post extends Component {
                                 {myBody}
                             </div>
                             <div className="card-footer">
-                                <strong>by {myAuthor}</strong>  -  <span>{dateComponent} at {timeComponent}</span>
+                                <strong>by {myAuthor}</strong>  -  <span>{dateComponent} @ {timeComponent}</span>
                             </div>
                         </div>
                     </div>

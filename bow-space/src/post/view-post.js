@@ -6,29 +6,36 @@ class ViewPost extends Component {
     
     componentDidMount() {
         // setInterval(this.checkNewPost, 1000);
-        setTimeout(() => this.checkNewPost(), 1000);
+        this.timerId = window.setTimeout(() => this.checkNewPost(), 1000);
         // this.checkNewPost();
     }
     
     componentWillUnmount() {
-        clearInterval();
+        clearInterval(this.timerId);
     }
 
     checkNewPost = () => {
         const viewPostProps = this.props.viewPostProps;
         const loginCredentials = viewPostProps.loginCredentials;
-        const posts = viewPostProps.userPosts.posts;
+        const userPosts = viewPostProps.userPosts;
+        const posts = userPosts.posts;
         const UpdateUserPost = viewPostProps.UpdateUserPost;
-        var user = loginCredentials.UserId;
-        if (this.props.userSpaceId) {
-            user = this.props.userSpaceId;
+        var userId = userPosts.UserSpaceID;
+
+        const updateUserSpaceID = viewPostProps.updateUserSpaceID;
+        const paramSpaceId = this.props.paramSpaceId;
+        if (userId==="") {
+            userId = loginCredentials.UserId;
         }
-        GetMyPost(user, loginCredentials.LoginToken)
+        if (paramSpaceId) {
+            userId = paramSpaceId;
+        }
+        updateUserSpaceID(userId);
+        GetMyPost(userId, loginCredentials.LoginToken)
             .then(result => {
-                console.table(result);
                 var fetchPosts = result.MatchingPosts;
                 if (posts.length !== fetchPosts.length) {
-                    UpdateUserPost('', fetchPosts);
+                    UpdateUserPost(fetchPosts);
                 }
             })
             .catch(error => console.error(error));

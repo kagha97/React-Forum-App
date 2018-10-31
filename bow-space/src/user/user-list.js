@@ -13,7 +13,7 @@ function UserInfo(props) {
                 <label id = "firstlastname">{props.loginCredential.UserName}</label>
                 <button href="#" id= "logout" className="btn btn-danger" onClick={props.OnLogout}>Logout</button>
             </div>
-            <button type="button" className="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}><Link to = '/'>My Board</Link></button>
+            <Link to = {'/'+props.loginCredential.UserId}><button type="button" className="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}>My Board</button></Link>
         </div>
     );
 }
