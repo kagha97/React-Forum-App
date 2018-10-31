@@ -14,12 +14,15 @@ class Home extends React.Component {
                 <div className = "col-md-3">
                     <UserListPanel userListPanelProps={userListPanelProps}/>
                 </div>
-                <div className="col-md-8">
+                {/*add col-md-8  below*/}
+                <div className='add col-md-8'>
                     <ViewPost viewPostProps={viewPostProps}/>
-                </div>
+                
+               
                 <NewPost newPostProps={newPostProps}/>
                 {/* <div className = 'col-md-1'>
                 </div> */}
+             </div>
             </div>
             </div>
         );

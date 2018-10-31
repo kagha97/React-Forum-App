@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function UserInfo(props) {
     var nameProfile = props.loginCredential.UserName.charAt(0).toUpperCase(); //
     return (
-        <div className="card row align-items-center" style={{width: '100%', background:'#0077b3'}}>
+        <div id = 'user-list-head'className="card row align-items-center" >
             <div id = 'profile'> 
                 <div id ='profileText'>{nameProfile}</div>
             </div>
@@ -41,16 +41,16 @@ class UserList extends React.Component {
     render () {
       var users = this.props.userList;
      return (
-        <div>     
+        <div id = 'list-container'>     
             <label id='user-list-label'><i class="fas fa-users"></i> Members</label>  
-            <div className="card" style={{width: '18rem', background: '#0099ff'}}></div> 
-            <ul  id = 'user-list' className="list-group list-group-flush align-items-center" style = {{maxHeight: '25em'}}>
+            < div id = 'user-list' className="list-group list-group-flush align-items-center" style = {{maxHeight: '25em'}}>
              {
-                 users.map((user) =><li key={user.UserId}>
-                 <Link to = {'/userid='+user.UserId}><button className="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></Link>
-                 </li> )
+                 users.map((user) =><div key={user.UserId}>
+                 <div>g
+                 <Link to = {'/userid='+user.UserId}><button id = 'user-select' className=" mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}><div id = 'list-profile'>{user.UserName.charAt(0).toUpperCase()}</div>{user.UserName}</button></Link></div>
+                 </div> )
              }
-            </ul>
+            </div>
         </div>
         );
     }
