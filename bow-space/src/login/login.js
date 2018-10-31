@@ -17,32 +17,40 @@ class LoginForm extends React.Component {
         const message = this.props.loginAttempt.message;
         const waitNeeded = this.props.loginAttempt.waitNeeded;
         return (    
+            <div id = 'login-background'>
             <div className= 'row justify-content-md-center'> 
-                <div className="card  bg-dark mb-3" id='login-form' style={{width:'21em'}}>
+                <div className="card  bg-dark mb-3 " id='login-form' style={{width:'21em'}}>
                     <div className = 'card-header'>  <img id = "logo" src={ require('../images/bowspace logo.png')} alt='bowspace'/></div> 
                         <div className="card-body">
                             <label htmlFor = 'login head' id = "login-head" > WELCOME! </label>
                             <label  htmlFor = 'login message' id = "login-msg">Nice to see you again, please login.</label>
-                            <div className = 'row justify-content-md-center'>
-                                <div className = 'form-group'>
-                                    <label  htmlFor = 'email input' id = 'login-userpass' className='mr-sm-2'>Username: </label>
+                            <div className = ' justify-content-md-center'>
+                           
+                                <div id = 'user-form' className = 'form-group'>
+                                    <label  htmlFor = 'email input' id = 'login-userpass' className='mr-sm-2'><i class="fas fa-id-card-alt"></i> USERNAME: </label>
                                     <input type="email" className="form-control mr-sm-2"  id="email-input" ref='email'/>
                                 </div>
                             </div>
-                        <div className = 'row justify-content-md-center'>
-                            <div className = 'form-group'>
-                                <label  htmlFor = 'pwd input' id = 'login-userpass' className = 'mr-sm-2'> Password: </label>
+                        <div className = ' justify-content-md-center'>
+                            <div id = 'pass-form' className = 'form-group'>
+                                <label  htmlFor = 'pwd input' id = 'login-userpass' className = 'mr-sm-2'><i className="fas fa-key"></i> PASSWORD: </label>
                                 <input type="password" className="form-control mr-sm-2"  id="pwd-input" ref='pwd'/>
                             </div>
                         </div>
+                      
                         <div className = 'row justify-content-md-center'>
-                            <label  htmlFor = 'login status' className = 'mr-sm-2' id='login-status-message'>{ waitNeeded ? <Wait/> : message }</label>
+                            <div className = 'col-md-12 text-center'>
+                                <label  htmlFor = 'login status' className = 'mr-sm-2' id='login-status-message'>{ waitNeeded ? <Wait/> : message }</label>
+                            </div>
                         </div>
-                        <div className = 'row justify-content-md-center mr-sm-2' >
-                            <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={this.handleSubmit}>Login</button>
+                       
+                        <div className = 'justify-content-md-center' >
+                            <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={this.handleSubmit}><i class="fas fa-sign-in-alt"></i> Login</button>
                         </div>
+                        
                     </div>
                 </div>
+            </div>
             </div>
         );
     }
@@ -71,7 +79,7 @@ class Login extends React.Component {
         const loginStatus = loginAttempt.loginStatus;
         const handleWait = this.props.handleWait;
         return (
-            <div id = 'login-background'>
+            <div>
                 {loginStatus === true ? <Redirect to='/' /> : ''}
                 <LoginForm loginAttempt={loginAttempt} handleWait={handleWait} OnSubmitLogin={this.props.OnSubmitLogin}/>
             </div>

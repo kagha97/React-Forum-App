@@ -54,7 +54,7 @@ class ViewPost extends Component {
         const userPosts = viewPostProps.userPosts;
         const posts = userPosts.posts;
         return (
-            <div className="col-md-8">
+            <div id = 'message-container' className="">
                 {
                     posts.map((post) => 
                         <div key={post.PostId}>

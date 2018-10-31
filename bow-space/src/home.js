@@ -11,14 +11,16 @@ class Home extends React.Component {
         const userListPanelProps = this.props.userListPanelProps;
         const newPostProps = this.props.newPostProps;
         return(
-            <div id="main-panel" className="row align-items-center">
-                <div className = "col-md-4">
-                    <UserListPanel userListPanelProps={userListPanelProps}/>
+            <div id="main-panel" className="">
+                <div className = 'row'>
+                    <div className = "col-md-3">
+                        <UserListPanel userListPanelProps={userListPanelProps}/>
+                    </div>
+                    <div className="add col-md-8">
+                        <ViewPost viewPostProps={viewPostProps} paramSpaceId={paramSpaceId}/>
+                    </div>
+                    <NewPost newPostProps={newPostProps} paramSpaceId={paramSpaceId}/>
                 </div>
-                <div className="col-md-8">
-                    <ViewPost viewPostProps={viewPostProps} paramSpaceId={paramSpaceId}/>
-                </div>
-                <NewPost newPostProps={newPostProps} paramSpaceId={paramSpaceId}/>
             </div>
         );
     }

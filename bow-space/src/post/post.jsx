@@ -14,24 +14,30 @@ class Post extends Component {
         var timeComponent = parts[1];
 
         return (
-        <div id={'post'+myPostId}>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-8">
-                        <div className="card post">
-                            <div className="card-body">
-                                {myBody}
-                            </div>
-                            <div className="card-footer">
-                                <strong>by {myAuthor}</strong>  -  <span>{dateComponent} @ {timeComponent}</span>
-                            </div>
+            <div id={'post'+myPostId}>
+    
+                <div className="card post">
+                    <div className="row card-header">
+    
+                        <div className="col-md-1">
+                        B
+                        </div>
+    
+                        <div className="col-md">
+                        <strong>{myAuthor}</strong>
+                        <br/>
+                        <span>{dateComponent} @ {timeComponent}</span>
                         </div>
                     </div>
+    
+                    <div className="row card-body">
+                        {myBody}
+                    </div>
+    
                 </div>
+                <br/>
             </div>
-            <br/>
-        </div>
-        );
+            );
     }
 }
 

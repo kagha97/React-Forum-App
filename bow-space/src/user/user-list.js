@@ -6,15 +6,15 @@ import Wait from '../API/loader.js'
 function UserInfo(props) {
     var nameProfile = props.loginCredential.UserName.charAt(0).toUpperCase(); //
     return (
-        <div className="card row align-items-center" style={{width: '23rem', background:'#0077b3'}}>
+        <div id = 'user-list-head'className="card row align-items-center" >
             <div id = 'profile'> 
                 <div id ='profileText'>{nameProfile}</div>
             </div>
             <div className="card-body ">
                 <label id = "firstlastname">{props.loginCredential.UserName}</label>
-                <button href="#" id= "logout" className="btn btn-danger" onClick={props.OnLogout}>Logout</button>
+                <button href="#" id= "logout" className="btn btn-danger" onClick={props.OnLogout}><i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
-            <Link to = {'/'+props.loginCredential.UserId}><button onClick = {() => props.OnSwitchSpace(props.loginCredential.UserId)} type="button" className="btn btn-primary btn-lg btn-block" style= {{borderRadius: '0em'}}>My Board</button></Link>
+            <Link to = {'/'+props.loginCredential.UserId}><button onClick = {() => props.OnSwitchSpace(props.loginCredential.UserId)}  id='myboard' className="btn btn-primary btn-lg btn-block" ><i class="fas fa-home"></i>My Board</button></Link>
         </div>
     );
 }
@@ -49,25 +49,26 @@ class UserList extends React.Component {
      return (
         <div>     
             <label id='user-list-label'>Members</label>  
-            <form>
+            {/* <form>
                 <div className="form-group">
                 </div>
-            </form>
-            <div className="card" style={{width: '18rem', background: '#0099ff'}}></div> 
-            <ul  id = 'user-list' className="list-group list-group-flush align-items-center" style = {{maxHeight: '25em'}}>
-             {  (users.length !== 0)?
-                 users.map((user) =><li key={user.UserId}>
-                        <Link to = {'/'+user.UserId}><button onClick = {() => this.props.OnSwitchSpace(this.props.loginCredential.UserId)} className="bg-primary mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></Link>
-                    </li> 
-                 ) 
-                 : <Wait/>
-             }
-            </ul>
+            </form>    */}
+            <div id = 'list-container'>     
+                <label id='user-list-label'><i class="fas fa-users"></i> Members</label>  
+                <div id = 'user-list' className="list-group list-group-flush align-items-center" style = {{maxHeight: '25em'}}>
+                {  (users.length !== 0)?
+                    users.map((user) =><li key={user.UserId}>
+                            <Link to = {'/'+user.UserId}><button onClick = {() => this.props.OnSwitchSpace(this.props.loginCredential.UserId)}  id = 'user-select' className=" mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button></Link>
+                        </li> 
+                    ) 
+                    : <Wait/>
+                }
+                </div>
+            </div>
         </div>
         );
     }
 }
-
 class UserListPanel extends React.Component {
 
     render() {
@@ -78,7 +79,7 @@ class UserListPanel extends React.Component {
         const setUserList = userListPanelProps.setUserList;
         const OnSwitchSpace = userListPanelProps.OnSwitchSpace;
         return (
-            <div id = "main-panel" className="card row align-items-center" style={{minHeight: '100vh',width: '23rem', background: '#333333'}}>
+            <div id = "userlist-main-panel" className="card row align-items-center">
                 <UserInfo loginCredential={loginCredentials} OnLogout={OnLogout} OnSwitchSpace={OnSwitchSpace}/>
                 <UserList loginCredential={loginCredentials} userList = {userList} setList = {setUserList} OnSwitchSpace={OnSwitchSpace}/>
                 <img id = "bottom-logo" style = {{objectFit: 'contain'}} className = "mt-auto" src={ require('../images/bowspace logo.png')} alt='logo'/>
