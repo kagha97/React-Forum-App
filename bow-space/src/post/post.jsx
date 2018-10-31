@@ -20,11 +20,11 @@ class Post extends Component {
                     <div className="row card-header">
     
                         <div className="col-md-1">
-                        B
+                        <div id = 'post-profile'><div id = 'post-profile-text'>{this.props.sender.charAt(0).toUpperCase()}</div>
                         </div>
-    
-                        <div className="col-md">
-                        <strong>{myAuthor}</strong>
+                        </div>
+                        <div id = 'from'>
+                        <strong style={{fontSize : '23px'}}>{myAuthor}</strong>
                         <br/>
                         <span>{dateComponent} @ {timeComponent}</span>
                         </div>

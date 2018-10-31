@@ -54,6 +54,8 @@ class ViewPost extends Component {
         const userPosts = viewPostProps.userPosts;
         const posts = userPosts.posts;
         return (
+          
+               
             <div id = 'message-container' className="">
                 {
                     posts.map((post) => 
@@ -63,6 +65,7 @@ class ViewPost extends Component {
                     )
                 }
             </div>
+           
         );
     }
 }
