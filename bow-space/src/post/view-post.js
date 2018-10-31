@@ -45,6 +45,8 @@ class ViewPost extends Component {
         const posts = userPosts.posts;
         const waitNeeded = userPosts.busy;
         return (
+          
+               
             <div id = 'message-container' className="">
                 {
                     !waitNeeded?
@@ -57,6 +59,7 @@ class ViewPost extends Component {
                     <Wait height={100} width={100} color={'black'} />
                 }
             </div>
+           
         );
     }
 }

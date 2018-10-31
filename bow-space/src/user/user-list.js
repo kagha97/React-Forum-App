@@ -46,16 +46,12 @@ class UserList extends React.Component {
       const waitNeeded = this.props.userList.busy;
      return (
         <div>     
-            {/* <form>
-                <div className="form-group">
-                </div>
-            </form>    */}
             <div id = 'list-container'>     
                 <label id='user-list-label'><i class="fas fa-users"></i> Members</label>  
                 <div id = 'user-list' className="list-group list-group-flush align-items-center" style = {{maxHeight: '25em'}}>
                 {  !waitNeeded?
                     users.map((user) =><li key={user.UserId}>
-                            <button onClick = {() => this.props.OnSwitchSpace(user.UserId)}  id = 'user-select' className=" mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button>
+                            <button onClick = {() => this.props.OnSwitchSpace(user.UserId)}  id = 'user-select' className=" mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}><div id = 'list-profile'>{user.UserName.charAt(0).toUpperCase()}</div>{user.UserName}</button>
                         </li> 
                     ) 
                     : <Wait/>
@@ -63,6 +59,7 @@ class UserList extends React.Component {
                 </div>
             </div>
         </div>
+        
         );
     }
 }
@@ -79,7 +76,7 @@ class UserListPanel extends React.Component {
             <div id = "userlist-main-panel" className="card row align-items-center">
                 <UserInfo loginCredential={loginCredentials} OnLogout={OnLogout} OnSwitchSpace={OnSwitchSpace}/>
                 <UserList loginCredential={loginCredentials} userList = {userList} setList = {setUserList} OnSwitchSpace={OnSwitchSpace}/>
-                <img id = "bottom-logo" style = {{objectFit: 'contain'}} className = "mt-auto" src={ require('../images/bowspace logo.png')} alt='logo'/>
+                <img id = "bottom-logo" style = {{objectFit: 'contain'}} className = "mt-auto" src={ require('../images/bowspace logo - beta.png')} alt='logo'/>
             </div>
         );
     }
