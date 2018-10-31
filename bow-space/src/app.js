@@ -36,8 +36,8 @@ class App extends React.Component {
             loginCredentials,
             loginAttempt,
             userList : [],
+            userSpaceID: '',
             userPosts : {
-                UserSpaceID : '',
                 posts : [],
             },
             newPostData : {
@@ -47,13 +47,8 @@ class App extends React.Component {
     }
 
     updateUserSpaceID = (id) => {
-        let userPosts = {...this.state.userPosts};
-        console.log("_________________________________________");
-        console.log(userPosts);
-        console.log(id);
-        userPosts.UserSpaceID = id;
         this.setState({
-            userPosts,
+            userSpaceID : id,
         });
     }
 
@@ -112,8 +107,6 @@ class App extends React.Component {
 
     switchSpace = (id) => {
         this.updateUserSpaceID(id);
-        console.log("______________[switchspace]_________");
-        console.log(this.state.userPosts);
     }
 
     // logout user
@@ -155,6 +148,7 @@ class App extends React.Component {
         //props for view post component
         const viewPostProps = {
             loginCredentials,
+            userSpaceID: this.state.userSpaceID,
             userPosts: this.state.userPosts,
             updateUserSpaceID : this.updateUserSpaceID,
             UpdateUserPost : this.updateUserPost,
@@ -174,7 +168,7 @@ class App extends React.Component {
             newPostData: this.state.newPostData,
             handleModalShow: this.handleModalShow,
             userList : this.state.userList,
-            receipientId: this.state.userPosts.UserSpaceID,
+            receipientId: this.state.userSpaceID,
         };
         return (
             <BrowserRouter>

@@ -20,8 +20,8 @@ class ViewPost extends Component {
         const userPosts = viewPostProps.userPosts;
         const posts = userPosts.posts;
         const UpdateUserPost = viewPostProps.UpdateUserPost;
-        var userId = userPosts.UserSpaceID;
-        if (userId==="") {
+        var userId = viewPostProps.userSpaceID;
+        if (userId === "") {
             userId = loginCredentials.UserId;
         }
         GetMyPost(userId, loginCredentials.LoginToken)
@@ -47,7 +47,6 @@ class ViewPost extends Component {
         const viewPostProps = this.props.viewPostProps;
         const userPosts = viewPostProps.userPosts;
         const posts = userPosts.posts;
-        console.log("________________[view list render]________________");
         return (
             <div id = 'message-container' className="">
                 {
