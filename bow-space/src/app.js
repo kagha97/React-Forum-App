@@ -35,10 +35,14 @@ class App extends React.Component {
         this.state = {
             loginCredentials,
             loginAttempt,
-            userList : [],
+            userList : {
+                list : [],
+                busy : true,
+            },
             userSpaceID: '',
             userPosts : {
                 posts : [],
+                busy : true,
             },
             newPostData : {
                 modalShow : false,
@@ -52,11 +56,15 @@ class App extends React.Component {
         });
     }
 
-    updateUserPost = (posts) => {
-        let userPosts = {...this.state.userPosts};
-        userPosts.posts = posts;
+    updateUserPost = (posts, busy = false) => {
+        if (this.state.userPosts.posts.length !== 0 && JSON.stringify(posts) === JSON.stringify(this.state.userPosts.posts)) {
+            return;
+        }
         this.setState({
-            userPosts,
+            userPosts :{
+                posts,
+                busy : busy
+            }
         });
     }
 
@@ -93,6 +101,8 @@ class App extends React.Component {
             sessionStorage.setItem("UserId", newCredentials.UserId);
             sessionStorage.setItem("LoginToken", newCredentials.LoginToken);
             sessionStorage.setItem("UserName", newCredentials.UserName);
+            //show loggedin user space
+            this.updateUserSpaceID(newCredentials.UserId);
         }
         else {
             this.setState({
@@ -106,6 +116,12 @@ class App extends React.Component {
     }
 
     switchSpace = (id) => {
+        this.setState({
+            userPosts: {
+                posts : [],
+                busy : true,
+            }
+        });
         this.updateUserSpaceID(id);
     }
 
@@ -133,10 +149,16 @@ class App extends React.Component {
     }
 
     // set user list
-    setUserList = (userList) => {
-        if (userList.length !== this.state.userList.length) {
-            this.setState({userList : userList});
+    setUserList = (list, busy = false) => {
+        if (this.state.userList.list.length !== 0 && JSON.stringify(list) === JSON.stringify(this.state.userList.list)) {
+            return;
         }
+        this.setState({
+            userList : {
+                list,
+                busy
+            }
+        });
     }
 
     //rendering app component
@@ -152,7 +174,7 @@ class App extends React.Component {
             userPosts: this.state.userPosts,
             updateUserSpaceID : this.updateUserSpaceID,
             UpdateUserPost : this.updateUserPost,
-            userList: this.state.userList,
+            userList: this.state.userList.list,
         };
         //props for userlist component
         const userListPanelProps = {
@@ -167,7 +189,7 @@ class App extends React.Component {
             loginCredentials,
             newPostData: this.state.newPostData,
             handleModalShow: this.handleModalShow,
-            userList : this.state.userList,
+            userList : this.state.userList.list,
             receipientId: this.state.userSpaceID,
         };
         return (

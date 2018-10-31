@@ -1,6 +1,5 @@
 import React from 'react';
 import {GetUserList} from '../API/fetch.js'
-import { Link } from 'react-router-dom'
 import Wait from '../API/loader.js'
 
 function UserInfo(props) {
@@ -24,7 +23,7 @@ function UserInfo(props) {
 class UserList extends React.Component {
 
     componentDidMount() {
-         this.prepareUserList(); 
+        this.timerId = window.setTimeout(() => this.prepareUserList(), 1000);
    }
 
     componentWillUnmount() {
@@ -38,17 +37,16 @@ class UserList extends React.Component {
                 var mappedData = data.MatchingUsers;
                 this.props.setList(mappedData)
             })
-            .catch(error => {
-                console.error(error);
-            })
+            .catch(error => this.props.setList([],true))
+            .then(this.timerId = window.setTimeout(() => this.prepareUserList(), 10000));
     }
     
    
     render () {
-      var users = this.props.userList;
+      const users = this.props.userList.list;
+      const waitNeeded = this.props.userList.busy;
      return (
         <div>     
-            <label id='user-list-label'>Members</label>  
             {/* <form>
                 <div className="form-group">
                 </div>
@@ -56,7 +54,7 @@ class UserList extends React.Component {
             <div id = 'list-container'>     
                 <label id='user-list-label'><i class="fas fa-users"></i> Members</label>  
                 <div id = 'user-list' className="list-group list-group-flush align-items-center" style = {{maxHeight: '25em'}}>
-                {  (users.length !== 0)?
+                {  !waitNeeded?
                     users.map((user) =><li key={user.UserId}>
                             <button onClick = {() => this.props.OnSwitchSpace(user.UserId)}  id = 'user-select' className=" mb-3 list-group-item text-center d-inline-block" type="submit" style={{width: '16rem'}}>{user.UserName}</button>
                         </li> 

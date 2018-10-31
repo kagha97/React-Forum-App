@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import Post from './post'
 import {GetMyPost} from '../API/fetch'
+import Wait from '../API/loader.js'
 
 class ViewPost extends Component {
     
     componentDidMount() {
-        // setInterval(this.checkNewPost, 1000);
         this.timerId = window.setTimeout(() => this.checkNewPost(), 1000);
-        // this.checkNewPost();
     }
     
     componentWillUnmount() {
@@ -17,8 +16,6 @@ class ViewPost extends Component {
     checkNewPost = () => {
         const viewPostProps = this.props.viewPostProps;
         const loginCredentials = viewPostProps.loginCredentials;
-        const userPosts = viewPostProps.userPosts;
-        const posts = userPosts.posts;
         const UpdateUserPost = viewPostProps.UpdateUserPost;
         var userId = viewPostProps.userSpaceID;
         if (userId === "") {
@@ -27,11 +24,10 @@ class ViewPost extends Component {
         GetMyPost(userId, loginCredentials.LoginToken)
             .then(result => {
                 var fetchPosts = result.MatchingPosts;
-                if (posts.length !== fetchPosts.length) {
-                    UpdateUserPost(fetchPosts);
-                }
+                UpdateUserPost(fetchPosts);
             })
-            .catch(error => console.error(error));
+            .catch(error => UpdateUserPost([],true))
+            .then(this.timerId = window.setTimeout(() => this.checkNewPost(), 2000));
     }
 
     getUserName = id => {
@@ -47,14 +43,18 @@ class ViewPost extends Component {
         const viewPostProps = this.props.viewPostProps;
         const userPosts = viewPostProps.userPosts;
         const posts = userPosts.posts;
+        const waitNeeded = userPosts.busy;
         return (
             <div id = 'message-container' className="">
                 {
+                    !waitNeeded?
                     posts.map((post) => 
                         <div key={post.PostId}>
                             <Post newPost={post} sender={this.getUserName(post.SenderId)}/>
                         </div>
                     )
+                    : 
+                    <Wait height={100} width={100} color={'black'} />
                 }
             </div>
         );

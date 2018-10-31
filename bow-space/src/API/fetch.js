@@ -1,5 +1,4 @@
 const GetUserAuth = (loginAttempt) => {
-	console.log("----------------Get user auth fetch-----------------------");
 	const URL = 'http://api.bowspace.ca/rest/auth/login';
 	const headers = new Headers({
 		'Content-Type': 'application/x-www-form-urlencoded',
@@ -15,7 +14,6 @@ const GetUserAuth = (loginAttempt) => {
 }
 
 const GetUserList = (token, id) => {
-	console.log("--------------------------Get user List fetch-------------------------");
     var url = 'http://api.bowspace.ca/rest/users?userid=' + id +'&keywords=';
     const otherPrams = {
         method: 'GET',
@@ -32,7 +30,6 @@ const GetUserList = (token, id) => {
 }
 
 const GetMyPost = (loginUserId, loginToken) => {
-	console.log("-------------------------get my post fetch--------------------");
 	const URL = 'http://api.bowspace.ca/rest/posts';
 	const headers = new Headers({
 		'Content-Type': 'application/x-www-form-urlencoded',
@@ -50,7 +47,6 @@ const GetMyPost = (loginUserId, loginToken) => {
 }
 
 const SendPostMessege = (loginCredentials, messege) => {
-	console.log("------------------------send post messege fetch------------------------");
 	const post =  {
 		PostId : 0,
 		SenderId : loginCredentials.UserId,
