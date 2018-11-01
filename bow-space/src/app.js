@@ -9,7 +9,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        // retriving login credentials from session
+        //state variable for login
         var loginCredentials = {
             Status: '',
             UserId: '',
@@ -21,6 +21,7 @@ class App extends React.Component {
             loginStatus: false,
             waitNeeded: false,
         }
+        // retriving login credentials from session
         if (sessionStorage.getItem('Status') === 'success') {
             loginCredentials = {
                 Status: sessionStorage.getItem("Status"),
@@ -50,12 +51,14 @@ class App extends React.Component {
         }
     }
 
+    // callback to update userSpaceId
     updateUserSpaceID = (id) => {
         this.setState({
             userSpaceID : id,
         });
     }
 
+    //callback to update user post
     updateUserPost = (posts, busy = false) => {
         if (this.state.userPosts.posts.length !== 0 && JSON.stringify(posts) === JSON.stringify(this.state.userPosts.posts)) {
             return;
@@ -68,6 +71,7 @@ class App extends React.Component {
         });
     }
 
+    //callback to show/hide modal for create new post
     handleModalShow = () => {
         this.setState ({
             newPostData: {
@@ -76,7 +80,7 @@ class App extends React.Component {
         })
     }
 
-    //handle wait
+    //handle wait for login loading
     handleWait = () => {
         this.setState({
                 loginAttempt: {
@@ -115,6 +119,8 @@ class App extends React.Component {
         }
     }
 
+    //switching space id 
+    // use in user list to select different space
     switchSpace = (id) => {
         this.setState({
             userPosts: {

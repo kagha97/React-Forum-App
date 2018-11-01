@@ -5,6 +5,7 @@ import Wait from '../API/loader.js';
 
 class LoginForm extends React.Component {
 
+    //handle submit on click of login button
     handleSubmit = () => {
         this.props.handleWait();
         let email = this.refs.email.value;
@@ -13,6 +14,7 @@ class LoginForm extends React.Component {
         this.authenticateUser(userInputs, this.props.OnSubmitLogin);
     }
 
+    //api request to authenticate user
     authenticateUser = (userInputs, Login) => {
             let loginCredentials = { Status: '', UserId : '', LoginToken : '', UserName : ''}
             GetUserAuth({ EmailAddress: userInputs.email, Password : userInputs.pwd})
@@ -29,7 +31,7 @@ class LoginForm extends React.Component {
                     Login(loginCredentials);
                 })
             }
-
+            
     render () {
         const message = this.props.loginAttempt.message;
         const waitNeeded = this.props.loginAttempt.waitNeeded;

@@ -1,8 +1,7 @@
 import React from 'react';
 import {SendPostMessege} from '../API/fetch'
 
-
-/*ref*/
+//model function to show create new post form
 const Modal = ({ handleClose, show, children }) => {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
     return (
@@ -19,8 +18,10 @@ const Modal = ({ handleClose, show, children }) => {
     );
 };
 
+//new  post component 
 class NewPost extends React.Component {
 
+    // submit new post to api
     handleSubmit = (receipient) => {
         const newPostProps = this.props.newPostProps;
         const loginCredentials = newPostProps.loginCredentials;
@@ -35,6 +36,7 @@ class NewPost extends React.Component {
         handleModalShow();
     }
 
+    //gets user name from api
     getUserName = userId => {
         const userList = this.props.newPostProps.userList;
         var receipient = this.props.newPostProps.loginCredentials;

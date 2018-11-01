@@ -9,16 +9,13 @@ class Home extends React.Component {
         const viewPostProps = this.props.viewPostProps;
         const userListPanelProps = this.props.userListPanelProps;
         const newPostProps = this.props.newPostProps;
-
         return(
          <div id ='main-container'>
              <div className='row' style={{overflowX: 'hidden'}}>
                     <div className = "col-md-3">
                         <UserListPanel userListPanelProps={userListPanelProps}/>
-                    </div>
-                         
+                    </div>       
                     <div className="col-md-8">
-                
                         <ViewPost viewPostProps={viewPostProps}/>
                     </div>
                     <div className='col-md-1'>
