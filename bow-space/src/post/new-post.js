@@ -6,13 +6,14 @@ const Modal = ({ handleClose, show, children }) => {
     const showHideClassName = show ? "modal display-block" : "modal display-none";
     return (
         <div className={showHideClassName}>
-            <div id='new-post'>
-                <div className="card bg-dark mb-3">
-                    <h3 className="card-header ml-sm-4" id= 'post-title'>Create New Post  
-                        <button className = 'btn btn-danger' id = 'close-post' onClick={handleClose}>✖</button>
+            <div id='new-post' className='row  justify-content-md-center'>
+                <div className="card bg-dark ">
+                    <h3 className="card-header ml-sm-4" id= 'post-title'><i className="fas fa-pencil-alt"></i> Create A New Post  
+          
                     </h3>
                     {children}
                 </div>
+                <button className = 'btn btn-danger' id = 'close-post' onClick={handleClose}><i class="fas fa-times"></i> Cancel</button>
             </div>
         </div>
     );
@@ -61,7 +62,7 @@ class NewPost extends React.Component {
                     <div className="card-body" id = "new-post-layout">
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-left'>
-                                <button id = 'new-post-attributes'  className='btn btn-primary disabled  ml-sm-5'>Receipient:</button><div className='receipient '> {receipient.UserName}</div>
+                                <button id = 'new-post-attributes'  className='btn btn-primary disabled  ml-sm-5'>Space:</button><div className='receipient '> {receipient.UserName}</div>
                             </div>
                         </div>
                         <div className = 'form-group'>
@@ -71,8 +72,8 @@ class NewPost extends React.Component {
                             </div>
                         </div>
                         <div className = 'form-group'>
-                            <div className = 'row justify-content-md-center mr-sm-2' >
-                                <button type="submit" className="btn btn-primary mr-sm-2" id='submit-btn' onClick={() => this.handleSubmit(receipient)}>Send</button>
+                            <div className = 'col-xs-4'>
+                                <button type="submit" className="btn btn-primary btn-xs" id='submit-btn' onClick={() => this.handleSubmit(receipient)}><i class="fas fa-paper-plane"></i> SEND</button>
                             </div>
                         </div>
                     </div> 
