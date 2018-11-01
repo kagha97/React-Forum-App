@@ -23,7 +23,7 @@ function UserInfo(props) {
 
 
 //main user list container
-class UserList extends React.Component {
+class UserList extends React.PureComponent {
 
     componentDidMount() {
         this.timerId = window.setTimeout(() => this.prepareUserList(), 1000);
@@ -43,17 +43,14 @@ class UserList extends React.Component {
             .catch(error => this.props.setList([],true))
             .then(this.timerId = window.setTimeout(() => this.prepareUserList(), 10000));
     }
-    
    
     render () {
       const users = this.props.userList.list;
       const waitNeeded = this.props.userList.busy;
      return (
         <div>     
-            
-           
-                <label id='user-list-label'><i className="fas fa-users"></i> Members</label>  
-                <div id = 'user-list' className="list-group align-items-center" style = {{}}>
+            <label id='user-list-label'><i className="fas fa-users"></i> Members</label>  
+                <div id = 'scrollable-user-list' className="list-group align-items-center" >
                 {  !waitNeeded?
                     users.map((user) =><div key={user.UserId}>
                             <button onClick = {() => this.props.OnSwitchSpace(user.UserId)}  id = 'user-select' className=" mb-3 text-center " type="submit" style={{width: '16rem'}}><div id = 'list-profile'>{user.UserName.charAt(0).toUpperCase()}</div>{user.UserName}</button>
@@ -63,14 +60,10 @@ class UserList extends React.Component {
                 }
                 </div>
             </div>
-            
-            
-            
-        
         );
     }
 }
-class UserListPanel extends React.Component {
+class UserListPanel extends React.PureComponent {
 
     render() {
         //store all props in variables, easier to pass
@@ -80,12 +73,13 @@ class UserListPanel extends React.Component {
         const userList = userListPanelProps.userList;
         const setUserList = userListPanelProps.setUserList;
         const OnSwitchSpace = userListPanelProps.OnSwitchSpace;
+        const OnScroll = userListPanelProps.OnScroll;
         return (
             
             <div id = "userlist-main-panel" className="card row ">
             {/*contains everything in left panel*/}
                 <UserInfo loginCredential={loginCredentials} OnLogout={OnLogout} OnSwitchSpace={OnSwitchSpace}/>
-                <UserList loginCredential={loginCredentials} userList = {userList} setList = {setUserList} OnSwitchSpace={OnSwitchSpace}/>
+                <UserList loginCredential={loginCredentials} userList = {userList} setList = {setUserList} OnSwitchSpace={OnSwitchSpace} OnScroll={OnScroll}/>
                 <img id = "bottom-logo" style = {{objectFit: 'contain'}} className = "mt-auto" src={ require('../images/bowspace logo - beta.png')} alt='logo'/>
             </div>
         );

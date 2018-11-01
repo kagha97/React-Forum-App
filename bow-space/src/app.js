@@ -36,48 +36,7 @@ class App extends React.Component {
         this.state = {
             loginCredentials,
             loginAttempt,
-            userList : {
-                list : [],
-                busy : true,
-            },
-            userSpaceID: '',
-            userPosts : {
-                posts : [],
-                busy : true,
-            },
-            newPostData : {
-                modalShow : false,
-            }
         }
-    }
-
-    // callback to update userSpaceId
-    updateUserSpaceID = (id) => {
-        this.setState({
-            userSpaceID : id,
-        });
-    }
-
-    //callback to update user post
-    updateUserPost = (posts, busy = false) => {
-        if (this.state.userPosts.posts.length !== 0 && JSON.stringify(posts) === JSON.stringify(this.state.userPosts.posts)) {
-            return;
-        }
-        this.setState({
-            userPosts :{
-                posts,
-                busy : busy
-            }
-        });
-    }
-
-    //callback to show/hide modal for create new post
-    handleModalShow = () => {
-        this.setState ({
-            newPostData: {
-                modalShow : !this.state.newPostData.modalShow,
-            }
-        })
     }
 
     //handle wait for login loading
@@ -105,8 +64,6 @@ class App extends React.Component {
             sessionStorage.setItem("UserId", newCredentials.UserId);
             sessionStorage.setItem("LoginToken", newCredentials.LoginToken);
             sessionStorage.setItem("UserName", newCredentials.UserName);
-            //show loggedin user space
-            this.updateUserSpaceID(newCredentials.UserId);
         }
         else {
             this.setState({
@@ -117,18 +74,6 @@ class App extends React.Component {
                     }
             });
         }
-    }
-
-    //switching space id 
-    // use in user list to select different space
-    switchSpace = (id) => {
-        this.setState({
-            userPosts: {
-                posts : [],
-                busy : true,
-            }
-        });
-        this.updateUserSpaceID(id);
     }
 
     // logout user
@@ -154,56 +99,19 @@ class App extends React.Component {
         sessionStorage.removeItem("UserName");
     }
 
-    // set user list
-    setUserList = (list, busy = false) => {
-        if (this.state.userList.list.length !== 0 && JSON.stringify(list) === JSON.stringify(this.state.userList.list)) {
-            return;
-        }
-        this.setState({
-            userList : {
-                list,
-                busy
-            }
-        });
-    }
-
     //rendering app component
     render() {
         //props for login page
         const loginAttempt = this.state.loginAttempt;
         const loginStatus = loginAttempt.loginStatus;
         const loginCredentials = this.state.loginCredentials;
-        //props for view post component
-        const viewPostProps = {
-            loginCredentials,
-            userSpaceID: this.state.userSpaceID,
-            userPosts: this.state.userPosts,
-            updateUserSpaceID : this.updateUserSpaceID,
-            UpdateUserPost : this.updateUserPost,
-            userList: this.state.userList.list,
-        };
-        //props for userlist component
-        const userListPanelProps = {
-            loginCredentials,
-            userList : this.state.userList,
-            setUserList : this.setUserList,
-            OnLogout : this.handleLogout,
-            OnSwitchSpace : this.switchSpace,
-        };
-        //props for newpost component
-        const newPostProps = {
-            loginCredentials,
-            newPostData: this.state.newPostData,
-            handleModalShow: this.handleModalShow,
-            userList : this.state.userList.list,
-            receipientId: this.state.userSpaceID,
-        };
+        const handleLogout = this.handleLogout;
         return (
             <BrowserRouter>
                 <Switch>
                     <Route path='/login' component={(...props) => <Login {...props} loginAttempt={loginAttempt} handleWait={this.handleWait} OnSubmitLogin={this.handleLogin}/>}/>
                     {loginStatus === false ? <Redirect to="/login" /> : ''}
-                    <Route exact path='/:UserId?' component={(...props) => <Home  {...props} viewPostProps={viewPostProps} userListPanelProps={userListPanelProps} newPostProps={newPostProps}/>}/>
+                    <Route exact path='/' component={(...props) => <Home  {...props} loginCredentials={loginCredentials} handleLogout={handleLogout}/>}/>
                     <Route component={Whoops404}/>
                 </Switch>
             </BrowserRouter>

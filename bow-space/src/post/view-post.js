@@ -38,7 +38,7 @@ class ViewPost extends Component {
         const userList = this.props.viewPostProps.userList;
         const user = userList.find((user) => user.UserId === id);
         if (user) {
-            return user.UserName;
+            return user.UserName + '\'s';
         }
         return '';
     }
@@ -53,7 +53,6 @@ class ViewPost extends Component {
             userName = "My";
         }
         return (
-          
                <div id ='message-panel'>
                     <div id = 'who-panel' className='panel panel-default'>
                        <div id = 'who-profile-description'>{userName} Space</div>

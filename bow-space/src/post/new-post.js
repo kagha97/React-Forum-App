@@ -13,7 +13,6 @@ const Modal = ({ handleClose, show, children }) => {
                     </h3>
                     {children}
                 </div>
-                <button className = 'btn btn-danger' id = 'close-post' onClick={handleClose}><i class="fas fa-times"></i> Cancel</button>
             </div>
         </div>
     );
@@ -38,6 +37,7 @@ class NewPost extends React.Component {
         SendPostMessege(loginCredentials , message)
             .then(result => console.log(result))
             .catch(error => console.error(error));
+        this.refs.body.value = "";
         handleModalShow();
     }
 
@@ -77,7 +77,8 @@ class NewPost extends React.Component {
                         </div>
                         <div className = 'form-group'>
                             <div className = 'col-xs-4'>
-                                <button type="submit" className="btn btn-primary btn-xs" id='submit-btn' onClick={() => this.handleSubmit(receipient)}><i class="fas fa-paper-plane"></i> SEND</button>
+                                <button type="submit"className="btn btn-primary row submit-post-btns"  onClick={() => this.handleSubmit(receipient)}><i className="fas fa-paper-plane"></i> SEND</button>
+                                <button  className = 'btn btn-danger row col-xs-2 submit-post-btns' onClick={() => handleModalShow()}><i className="fas fa-times"></i> Cancel</button>
                             </div>
                         </div>
                     </div> 

@@ -245,6 +245,13 @@ body, HTML {
  
  
  #user-list {
+     background-color: #202020;
+     width: 100%;
+     Height: 34vh;
+     overflow: hidden;
+ }
+
+ #scrollable-user-list {
      overflow-x: hidden;
      background-color: #202020;
      width: 100%;
@@ -455,4 +462,9 @@ body, HTML {
  #busy-indicator {
      margin-left: 45%;
      margin-top: 25%;
+ }
+
+
+ .submit-post-btns{
+     margin-left: 7%;
  }

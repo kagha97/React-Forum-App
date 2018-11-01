@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Post extends Component {
+class Post extends React.PureComponent {
     render() { 
         const myAuthor = this.props.sender;
         const myBody = this.props.newPost.PostHtml;
@@ -15,29 +15,25 @@ class Post extends Component {
 
         return (
             <div id={'post'+myPostId}>
-    
                 <div className="card post">
                     <div className="row card-header">
-    
                         <div className="col-md-1">
-                        <div id = 'post-profile'><div id = 'post-profile-text'>{this.props.sender.charAt(0).toUpperCase()}</div>
+                            <div id = 'post-profile'><div id = 'post-profile-text'>{this.props.sender.charAt(0).toUpperCase()}</div>
                         </div>
-                        </div>
-                        <div id = 'from'>
+                    </div>
+                    <div id = 'from'>
                         <strong style={{fontSize : '23px'}}>{myAuthor}</strong>
                         <br/>
                         <span>{dateComponent} @ {timeComponent}</span>
-                        </div>
                     </div>
-    
+                </div>
                     <div className="row card-body">
                         {myBody}
+                        </div>
                     </div>
-    
-                </div>
                 <br/>
             </div>
-            );
+        );
     }
 }
 
