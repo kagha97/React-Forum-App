@@ -55,7 +55,7 @@ class UserList extends React.Component {
                             <button onClick = {() => this.props.OnSwitchSpace(user.UserId)}  id = 'user-select' className=" mb-3 text-center " type="submit" style={{width: '16rem'}}><div id = 'list-profile'>{user.UserName.charAt(0).toUpperCase()}</div>{user.UserName}</button>
                         </div> 
                     ) 
-                    : <Wait/>
+                    : <Wait type={'Oval'} height={50} width={50}/>
                 }
                 </div>
             </div>
