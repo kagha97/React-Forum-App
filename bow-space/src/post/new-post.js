@@ -9,8 +9,8 @@ const Modal = ({ handleClose, show, children }) => {
         <div className={showHideClassName}>
             <div id='new-post'>
                 <div className="card bg-dark mb-3">
-                    <h3 className="card-header" id= 'post-title'>Create New Post  
-                        <button className = 'btn btn-danger'id='close-post' onClick={handleClose}>✖</button>
+                    <h3 className="card-header ml-sm-4" id= 'post-title'>Create New Post  
+                        <button className = 'btn btn-danger' id = 'close-post' onClick={handleClose}>✖</button>
                     </h3>
                     {children}
                 </div>
@@ -56,21 +56,21 @@ class NewPost extends React.Component {
         return (
             <main>
                 <Modal show={modalShow} handleClose = {() => handleModalShow()}>
-                    <div className="card-body">
+                    <div className="card-body" id = "new-post-layout">
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-left'>
-                                <label id = 'login-userpass' htmlFor="email" className='mr-sm-2'>Receipient: <button className='receipient-button'>{receipient.UserName}</button></label>
+                                <button id = 'new-post-attributes'  className='btn btn-primary disabled  ml-sm-5'>Receipient:</button><div className='receipient '> {receipient.UserName}</div>
                             </div>
                         </div>
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-left'>
-                                <label id = 'login-userpass' htmlFor = 'body' className = 'mr-sm-2'>Body: </label>
-                                <textarea type = 'body' className = 'form-control mr-sm-2' id ='email-input' ref='body' rows='7'/>
+                                <div id = 'new-post-attributes' className ='btn btn-primary disabled mr-sm-5 ml-sm-5'>Body: </div>
+                                <textarea type = 'body' className = 'form-control mr-sm-5 ml-sm-5' id ='new-post-textarea' ref='body' rows='7' maxLength = '1000' required/>
                             </div>
                         </div>
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-center mr-sm-2' >
-                                <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={() => this.handleSubmit(receipient)}>Send</button>
+                                <button type="submit" className="btn btn-primary mr-sm-2" id='submit-btn' onClick={() => this.handleSubmit(receipient)}>Send</button>
                             </div>
                         </div>
                     </div> 
