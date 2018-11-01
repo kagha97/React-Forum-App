@@ -248,7 +248,7 @@ body, HTML {
      overflow-x: hidden;
      background-color: #202020;
      width: 100%;
-     Height: 36vh;
+     Height: 34vh;
      overflow-y: scroll;
  }
  
@@ -430,6 +430,7 @@ body, HTML {
      overflow-x: hidden;
      height: 75vh;
      overflow-y: auto;
+     
     
      
      }
@@ -439,6 +440,7 @@ body, HTML {
          overflow-x: hidden;
          height: 90vh;
          overflow-y: hidden;
+         
          
          
      }

@@ -2,7 +2,10 @@ import React from 'react';
 import {GetUserList} from '../API/fetch.js'
 import Wait from '../API/loader.js'
 
+
+//userinfo panel for the logged in user
 function UserInfo(props) {
+    //first letter of user name, place holder for future profile pictures
     var nameProfile = props.loginCredential.UserName.charAt(0).toUpperCase(); //
     return (
         <div id = 'user-list-head'className="card  align-items-center" >
@@ -19,7 +22,7 @@ function UserInfo(props) {
 }
 
 
-
+//main user list container
 class UserList extends React.Component {
 
     componentDidMount() {
@@ -30,6 +33,7 @@ class UserList extends React.Component {
         clearInterval(this.timerId);
     }
 
+    //fetch user list from api, save user list in state
     prepareUserList = () => {
         GetUserList(this.props.loginCredential.LoginToken,0,'')
             .then(data => {
@@ -69,6 +73,7 @@ class UserList extends React.Component {
 class UserListPanel extends React.Component {
 
     render() {
+        //store all props in variables, easier to pass
         const userListPanelProps = this.props.userListPanelProps;
         const loginCredentials = userListPanelProps.loginCredentials;
         const OnLogout = userListPanelProps.OnLogout;
@@ -76,7 +81,9 @@ class UserListPanel extends React.Component {
         const setUserList = userListPanelProps.setUserList;
         const OnSwitchSpace = userListPanelProps.OnSwitchSpace;
         return (
+            
             <div id = "userlist-main-panel" className="card row ">
+            {/*contains everything in left panel*/}
                 <UserInfo loginCredential={loginCredentials} OnLogout={OnLogout} OnSwitchSpace={OnSwitchSpace}/>
                 <UserList loginCredential={loginCredentials} userList = {userList} setList = {setUserList} OnSwitchSpace={OnSwitchSpace}/>
                 <img id = "bottom-logo" style = {{objectFit: 'contain'}} className = "mt-auto" src={ require('../images/bowspace logo - beta.png')} alt='logo'/>
