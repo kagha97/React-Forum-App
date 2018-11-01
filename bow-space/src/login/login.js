@@ -10,8 +10,25 @@ class LoginForm extends React.Component {
         let email = this.refs.email.value;
         let pwd = this.refs.pwd.value;
         let userInputs = {email, pwd};
-        authenticateUser(userInputs, this.props.OnSubmitLogin);
+        this.authenticateUser(userInputs, this.props.OnSubmitLogin);
     }
+
+    authenticateUser = (userInputs, Login) => {
+            let loginCredentials = { Status: '', UserId : '', LoginToken : '', UserName : ''}
+            GetUserAuth({ EmailAddress: userInputs.email, Password : userInputs.pwd})
+                .then(result => {
+                    if (result.Status === 'success') {
+                        loginCredentials.Status = result.Status;
+                        loginCredentials.UserId = result.Login.UserId;
+                        loginCredentials.LoginToken = result.Login.LoginToken;
+                        loginCredentials.UserName = result.Login.UserName;
+                    }
+                    Login(loginCredentials);
+                })
+                .catch(error => {
+                    Login(loginCredentials);
+                })
+            }
 
     render () {
         const message = this.props.loginAttempt.message;
@@ -47,30 +64,12 @@ class LoginForm extends React.Component {
                         <div className = 'justify-content-md-center' >
                             <button type="submit" className="btn btn-primary mr-sm-2" id='login-btn' onClick={this.handleSubmit}><i class="fas fa-sign-in-alt"></i> Login</button>
                         </div>
-                        
                     </div>
                 </div>
             </div>
             </div>
         );
     }
-}
-
-function authenticateUser(userInputs, Login) {
-    let loginCredentials = { Status: '', UserId : '', LoginToken : '', UserName : ''}
-    GetUserAuth({ EmailAddress: userInputs.email, Password : userInputs.pwd})
-        .then(result => {
-            if (result.Status === 'success') {
-                loginCredentials.Status = result.Status;
-                loginCredentials.UserId = result.Login.UserId;
-                loginCredentials.LoginToken = result.Login.LoginToken;
-                loginCredentials.UserName = result.Login.UserName;
-            }
-            Login(loginCredentials);
-        })
-        .catch(error => {
-            console.error(error);
-        })
 }
 
 class Login extends React.Component {

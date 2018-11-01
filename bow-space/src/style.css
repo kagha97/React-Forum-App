@@ -1,6 +1,4 @@
-body, HTML {
-   
-}
+
 
 
 /* Login page */
@@ -435,4 +433,9 @@ html, body { overflow-x: hidden; }
     height: 100vh;
     color: white;
     background-image: linear-gradient(black, #365c82, black);
+}
+
+#busy-indicator {
+    margin-left: 45%;
+    margin-top: 25%;
 }

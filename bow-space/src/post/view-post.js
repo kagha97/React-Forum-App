@@ -45,8 +45,6 @@ class ViewPost extends Component {
         const posts = userPosts.posts;
         const waitNeeded = userPosts.busy;
         return (
-          
-               
             <div id = 'message-container' className="">
                 {
                     !waitNeeded?
@@ -55,8 +53,10 @@ class ViewPost extends Component {
                             <Post newPost={post} sender={this.getUserName(post.SenderId)}/>
                         </div>
                     )
-                    : 
-                    <Wait height={100} width={100} color={'black'} />
+                    :
+                    <div id='busy-indicator'>
+                        <Wait type={'Oval'} height={125} width={125} color={'black'} />
+                    </div>
                 }
             </div>
            
