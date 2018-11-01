@@ -46,7 +46,14 @@ class ViewPost extends Component {
         const waitNeeded = userPosts.busy;
         return (
           
-               
+               <div id ='message-panel'>
+                       <div id = 'who-panel' className='panel panel-default'>
+                     
+                       <div id = 'who-profile-description'>{this.getUserName(viewPostProps.userSpaceID)}'s Space</div>
+                <div id = 'who-profile'> 
+                <div id = 'who-profile-ab'>{this.getUserName(viewPostProps.userSpaceID).charAt(0).toUpperCase()}</div>
+                </div>
+                </div>
             <div id = 'message-container' className="">
                 {
                     !waitNeeded?
@@ -59,7 +66,7 @@ class ViewPost extends Component {
                     <Wait height={100} width={100} color={'black'} />
                 }
             </div>
-           
+           </div>
         );
     }
 }

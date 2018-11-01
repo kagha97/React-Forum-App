@@ -1,5 +1,5 @@
 body, HTML {
-   
+   overflow-x: hidden;
 }
 
 
@@ -153,81 +153,62 @@ body, HTML {
     background-color:rgb(14, 45, 92);
     }
 
-#messages {
-    width: 75%;
-    
-}
-
 
 #who-panel {
-    width: 100%;
-    height: 6vh;
-    background-color: #232425;
+    background-color: #252627;
+    margin-top: 1%;
+    border-radius: 20px;
+    
+
 }
 
 #who-profile {
     background-color: rgb(14, 56, 110);
     border-radius: 80%;
-    width: 5em;
-    height: 5em;
-    margin-left: 1rem;
-    
-    padding: 8px;
+    width: 4.5em;
+    height: 4.5em;
+    margin-left: 0.8rem;
+    margin-top: -4.8%;
+
  
 }
 
-#who-profile-text {
-        font-size: 40px;
-        margin-left: 1rem;
-        margin-top: 3px;
+#who-profile-ab {
+        font-size: 44px;
+        margin-left: 1.4rem;
+        color:white; 
+}
+
+#who-profile-description {
+    font-size: 250%;
+    margin-left: 6rem;
         color:white
 }
 
-#who-panel-name {
-    font-size: 40px;
-    margin-left: 2rem;
-        color:white
-}
-
+/*
 #main-panel {
    
     height: 100vh; 
     background-color: #88a4ce;
-    /* Center and scale the image nicely */
+     Center and scale the image nicely 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     overflow-x: hidden;
     overflow-y: auto;
-}
+};*/
 
-#main-container {
-    overflow-x: hidden;
-    width: 100%;
-}
-
-
-#list-container {
-    margin-left: 0rem;
-    width: 100%;
-}
 
 #userlist-main-panel {
-  
-   
-    height: 100%;
     min-height: 100vh;
-    
     background: #292929; 
-    
     height: 100%;
-    width: 24em;
+    width: 104%;
     border-radius: 0%;
 }
 #user-list-label {
     display: block;
     text-align: center;
-    line-height: 150%;
     font-size: 2em;
     color: white;
     margin-top: 2em;
@@ -236,6 +217,7 @@ body, HTML {
 #user-list-head {
     width: 100%;
     background-color: #0f6bc7;
+    border-radius: 0%;
 }
 
 #user-select {
@@ -243,7 +225,7 @@ body, HTML {
     color: white;
      height: 5rem;
      border-radius: 1rem;
-     margin-left: 1rem;
+     border-color: transparent;
 }
 
 #user-select:hover{
@@ -251,22 +233,23 @@ body, HTML {
     background-color:rgb(14, 76, 190);
     }
 
-    #list-profile {
-        background-color: rgb(14, 56, 110);
-        border-radius: 80%;
-        width: 2.5em;
-        height: 2.5em;
-        margin-left: 5.4rem;
-        padding: 8px;
-     
+#list-profile {
+    background-color: rgb(14, 56, 110);
+    border-radius: 80%;
+    width: 2.5em;
+    height: 2.5em;
+    margin-left: 6rem;
+    padding: 8px;
 }
 
 
 
 #user-list {
-    overflow:auto;
-    background-color: #242424;
-   
+    overflow-x: hidden;
+    background-color: #202020;
+    width: 100%;
+    Height: 36vh;
+    overflow-y: scroll;
 }
 
 
@@ -285,8 +268,6 @@ body, HTML {
     font-size: 1em;
     color: white;
 }
-
-
 
 .modal {
     position: fixed;
@@ -345,8 +326,6 @@ body, HTML {
     border-radius: 80%;
     width: 3.5em;
     height: 3.5em;
-    
-    
  
 }
 
@@ -366,10 +345,7 @@ body, HTML {
     background-color: #326dda;
     color: white;
     box-shadow: 10px 10px 4px rgba(2, 30, 83, 0.397);
-    width: 97%;
     border-radius: 10px;
-    
-    
 }
 
 div.newPostButton {
@@ -413,21 +389,29 @@ div.newPostButton {
     color: white;
     border-radius: 50px;
 }
-@media (min-width: 1200px) {
+
+/*@media (min-width: 1200px) {
     .container{
         max-width: 100%;
     }
-}
+}*/
 
 html, body { overflow-x: hidden; }
 
 #message-container{
-    margin-top: 2rem;
+    margin-top: 4rem;
     overflow-x: hidden;
-    height: 90vh;
+    height: 70vh;
     overflow-y: auto;
-    width: 100%;
     
+    }
+
+    #message-panel {
+        margin-top: 1rem;
+        overflow-x: hidden;
+        height: 90vh;
+        overflow-y: hidden;
+        
     }
 /** Error page */
 
