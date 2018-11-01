@@ -31,6 +31,10 @@ class NewPost extends React.Component {
             ReceipientId: receipient.UserId,
             PostHtml : this.refs.body.value,
         }
+        if (message.PostHtml === "") {
+            alert('Post cannot be sent empty!');
+            return;
+        }
         SendPostMessege(loginCredentials , message)
             .then(result => console.log(result))
             .catch(error => console.error(error));
@@ -42,7 +46,7 @@ class NewPost extends React.Component {
         const userList = this.props.newPostProps.userList;
         var receipient = this.props.newPostProps.loginCredentials;
         userList.forEach(user => {
-            if (userId == user.UserId) {
+            if (JSON.stringify(userId) === JSON.stringify(user.UserId)) {
                 receipient = user;
             }
         });
@@ -68,7 +72,7 @@ class NewPost extends React.Component {
                         <div className = 'form-group'>
                             <div className = 'row justify-content-md-left'>
                                 <div id = 'new-post-attributes' className ='btn btn-primary disabled mr-sm-5 ml-sm-5'>Body: </div>
-                                <textarea type = 'body' className = 'form-control mr-sm-5 ml-sm-5' id ='new-post-textarea' ref='body' rows='7' maxLength = '1000' required/>
+                                <textarea type = 'body' className = 'form-control mr-sm-5 ml-sm-5' id ='new-post-textarea' ref='body' rows='7' maxLength = '500' required/>
                             </div>
                         </div>
                         <div className = 'form-group'>
