@@ -301,25 +301,37 @@ body, HTML {
 /* css for new post*/
 
 #new-post {
-    width:50%;
-    margin-top: 6%;
-    margin-left: 26%;
+    border-radius: 0%;
+    width:40%;
+    margin-top: 11%;
+    margin-left: 30%;
+    background-color:transparent;
 }
-
+#close-post
+{
+    margin-left: 54%;
+}
 #post-title
 {
     color:white;
     font-size: 17;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
-
-#close-post
+#new-post-layout
 {
-    margin-left: 70%;
-    height: 3rem;
-    width: 3rem;
-
+    background-color: whitesmoke;
 }
+#new-post-textarea {
+    background-color: whitesmoke;
+    border-width: 2px;
+    border-color: rgb(10, 89, 121);
+    color : black;
+ }
+ #new-post-attributes {
+     color: white;
+    font-weight: bold;
+    margin-bottom : 1%;
+ }
 
 #post-profile {
     background-color: rgb(14, 56, 110);
@@ -383,11 +395,17 @@ div.newPostButton {
     }
 }
 
-.receipient-button
+.receipient
 {
-    background-color: #47748b;
-    color: white;
-    border-radius: 50px;
+    color: black;
+    font-weight: bold;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+#submit-btn
+{
+    width: 50%; 
 }
 
 /*@media (min-width: 1200px) {
