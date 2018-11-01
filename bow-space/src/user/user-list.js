@@ -11,9 +11,9 @@ function UserInfo(props) {
             </div>
             <div className="card-body ">
                 <label id = "firstlastname">{props.loginCredential.UserName}</label>
-                <button href="#" id= "logout" className="btn btn-danger" onClick={props.OnLogout}><i class="fas fa-sign-out-alt"></i> Logout</button>
+                <button href="#" id= "logout" className="btn btn-danger" onClick={props.OnLogout}><i className="fas fa-sign-out-alt"></i> Logout</button>
             </div>
-            <button onClick = {() => props.OnSwitchSpace(props.loginCredential.UserId)}  id='myboard' className="btn btn-primary btn-lg btn-block" ><i class="fas fa-home"></i> Home</button>
+            <button onClick = {() => props.OnSwitchSpace(props.loginCredential.UserId)}  id='myboard' className="btn btn-primary btn-lg btn-block" ><i className="fas fa-home"></i> Home</button>
         </div>
     );
 }
@@ -48,7 +48,7 @@ class UserList extends React.Component {
         <div>     
             
            
-                <label id='user-list-label'><i class="fas fa-users"></i> Members</label>  
+                <label id='user-list-label'><i className="fas fa-users"></i> Members</label>  
                 <div id = 'user-list' className="list-group align-items-center" style = {{}}>
                 {  !waitNeeded?
                     users.map((user) =><div key={user.UserId}>

@@ -75,7 +75,7 @@ class NewPost extends React.Component {
                         </div>
                     </div> 
                 </Modal>
-                <div id='new-post-button' className="newPostButton" onClick={() => handleModalShow()}><i class="fas fa-pencil-alt"></i></div>
+                <div id='new-post-button' className="newPostButton" onClick={() => handleModalShow()}><i className="fas fa-pencil-alt"></i></div>
             </main>
       );
     }

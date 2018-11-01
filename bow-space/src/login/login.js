@@ -44,7 +44,7 @@ class LoginForm extends React.Component {
                             <div className = ' justify-content-md-center'>
                            
                                 <div id = 'user-form' className = 'form-group'>
-                                    <label  htmlFor = 'email input' id = 'login-userpass' className='mr-sm-2'><i class="fas fa-id-card-alt"></i> USERNAME: </label>
+                                    <label  htmlFor = 'email input' id = 'login-userpass' className='mr-sm-2'><i className="fas fa-id-card-alt"></i> USERNAME: </label>
                                     <input type="email" className="form-control mr-sm-2"  id="email-input" ref='email'/>
                                 </div>
                             </div>
