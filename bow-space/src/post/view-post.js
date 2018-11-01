@@ -44,12 +44,16 @@ class ViewPost extends Component {
         const userPosts = viewPostProps.userPosts;
         const posts = userPosts.posts;
         const waitNeeded = userPosts.busy;
+        let userName = this.getUserName(viewPostProps.userSpaceID);
+        if (userName === '') {
+            userName = "My";
+        }
         return (
           
                <div id ='message-panel'>
                        <div id = 'who-panel' className='panel panel-default'>
                      
-                       <div id = 'who-profile-description'>{this.getUserName(viewPostProps.userSpaceID)}'s Space</div>
+                       <div id = 'who-profile-description'>{userName} Space</div>
                 <div id = 'who-profile'> 
                 <div id = 'who-profile-ab'>{this.getUserName(viewPostProps.userSpaceID).charAt(0).toUpperCase()}</div>
                 </div>
