@@ -41,7 +41,7 @@ class NewPost extends React.Component {
         const userList = this.props.newPostProps.userList;
         var receipient = this.props.newPostProps.loginCredentials;
         userList.forEach(user => {
-            if (userId == user.UserId) {
+            if (JSON.stringify(userId) === JSON.stringify(user.UserId)) {
                 receipient = user;
             }
         });
